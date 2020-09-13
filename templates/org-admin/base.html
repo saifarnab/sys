@@ -14,6 +14,13 @@
         <!--Chartist Chart CSS -->
         <link rel="stylesheet" href="{% static 'plugins/chartist/css/chartist.min.css' %}">
 
+         <!--Jquery steps CSS -->
+        <link rel="stylesheet" href="{% static 'plugins/jquery-steps/jquery.steps.css' %}">
+
+        <!-- Sweet Alert -->
+        <link href="{% static 'plugins/sweet-alert2/sweetalert2.min.css' %}" rel="stylesheet" type="text/css">
+
+
         <!-- DataTables -->
         <link href="{% static 'plugins/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'plugins/datatables/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
@@ -23,7 +30,8 @@
         <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'assets/css/metismenu.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" >
+        <script type="text/javascript" src="{% static 'myapp/js/tinymce/custom.js' %}" ></script>
     </head>
 
     <body>
@@ -39,10 +47,10 @@
                     <a href="index.html" class="logo">
                         <span>
                                 <img src="{% static 'assets/images/logo-light.png' %}" alt="" height="18">
-                            </span>
+                        </span>
                         <i>
                                 <img src="{% static 'assets/images/logo-sm.png' %}" alt="" height="22">
-                            </i>
+                        </i>
                     </a>
                 </div>
 
@@ -134,7 +142,7 @@
                                     <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings m-r-5"></i> Settings</a>
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Lock screen</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power text-danger"></i> Logout</a>
+                                    <a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="mdi mdi-power text-danger"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -147,9 +155,7 @@
                                 <i class="mdi mdi-menu"></i>
                             </button>
                         </li>
-
                     </ul>
-
                 </nav>
 
             </div>
@@ -181,7 +187,6 @@
                                     <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Events Type</span>
                                 </a>
                             </li>
-
 
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-view-grid"></i><span> Tables <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
@@ -331,7 +336,16 @@
         <!-- peity JS -->
         <script src="{% static 'plugins/peity-chart/jquery.peity.min.js' %}"></script>
 
+        <!-- form wizard -->
+        <script src="{% static 'plugins/jquery-steps/jquery.steps.min.js' %}"></script>
+
         <script src="{% static 'assets/pages/dashboard.js' %}"></script>
+        <script src="{% static 'https://cdn.quilljs.com/1.3.6/quill.js' %}"></script>
+
+        <!-- Sweet-Alert  -->
+        <script src="{% static 'plugins/sweet-alert2/sweetalert2.min.js' %}"></script>
+        <script src="{% static 'assets/pages/sweet-alert.init.js' %}"></script>
+
 
         <!-- App js -->
         <script src="{% static 'assets/js/app.js' %}"></script>
@@ -340,8 +354,16 @@
         $(document).ready( function () {
             $('#event_table').DataTable();
         } );
-    </script>
 
+        $(function ()
+        {
+            $("#form-horizontal").steps({
+                headerTag: "h3",
+                bodyTag: "fieldset",
+                transitionEffect: "slide"
+            });
+        });
+    </script>
     </body>
 
 </html>

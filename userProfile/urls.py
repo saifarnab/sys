@@ -1,8 +1,7 @@
 from django.urls import path
-# from .views import event_list
-#
-# app_name = "userProfile"
-#
-# urlpatterns = [
-#     path('type/', event_list, name='event_list'),
-# ]
+from .views import sign_in, sign_out
+
+urlpatterns = [
+    path('', sign_in, name='login'),
+    path('logout/', sign_out, name='logout')
+]

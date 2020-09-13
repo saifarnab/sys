@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import EventType
 
-# Register your models here.
+
+class EventTypeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'created_at', 'updated_at', 'status']
+
+
+admin.site.register(EventType, EventTypeAdmin)
