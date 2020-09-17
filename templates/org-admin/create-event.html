@@ -1,0 +1,320 @@
+{% extends 'org-admin/base.html' %}
+
+{% block content %}
+
+    <div class="page-title-box">
+        <div class="row align-items-center">
+
+            <div class="col-sm-6">
+                <h4 class="page-title">Upload Video</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="float-right d-none d-md-block">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-settings mr-2"></i> Settings
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'create-video' %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="title" class="col-lg-3 col-form-label">Title</label>
+                                        <div class="col-lg-9">
+                                            <input id="title" name="title" type="text" class="form-control">
+                                            <p>{{error_message.title_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="branch_venue" class="col-lg-3 col-form-label">Branch Venue</label>
+                                        <div class="col-lg-9">
+                                            <select id="branch_venue" name="branch_venue" class="form-control">
+                                                {% for item in branch_venue_context %}
+                                                    <option value="{{item.id}}">{{item.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="type" class="col-lg-3 col-form-label">Type</label>
+                                        <div class="col-lg-9">
+                                             <select id="type" name="type" class="form-control">
+                                                {% for item in type_context %}
+                                                    <option value="{{item.id}}">{{item.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="status" class="col-lg-3 col-form-label">Status</label>
+                                        <div class="col-lg-9">
+                                            <select id="status" name="" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="category" class="col-lg-3 col-form-label">Category</label>
+                                        <div class="col-lg-9">
+                                            <select onchange="get_sub_category();" id="category" name="category" class="form-control">
+                                                {% for item in category_context %}
+                                                    <option value="{{item.id}}">{{item.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="sub_category" class="col-lg-3 col-form-label">Sub Category</label>
+                                        <div class="col-lg-9">
+                                            <select id="sub_category" name="sub_category" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="popular_topics" class="col-lg-3 col-form-label">Popular Topics</label>
+                                        <div class="col-lg-9">
+                                            <select id="popular_topics" name="popular_topics" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="trainer" class="col-lg-3 col-form-label">Trainer</label>
+                                        <div class="col-lg-9">
+                                            <select id="trainer" name="trainer" class="form-control">
+                                                {% for item in trainer_context %}
+                                                    <option value="{{item.id}}">{{item.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="starting_date" class="col-lg-3 col-form-label">Starting Date</label>
+                                        <div class="col-lg-9">
+                                            <input id="starting_date" name="starting_date" type="date" class="form-control">
+                                            <p>{{error_message.starting_date_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="last_registration_date" class="col-lg-3 col-form-label">Last Registration Date</label>
+                                        <div class="col-lg-9">
+                                            <input id="last_registration_date" name="last_registration_date" type="date" class="form-control">
+                                            <p>{{error_message.last_registration_date_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="duration" class="col-lg-3 col-form-label">Duration</label>
+                                        <div class="col-lg-9">
+                                            <input id="duration" name="duration" type="text" class="form-control">
+                                            <p>{{error_message.duration_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="session_per_week" class="col-lg-3 col-form-label">Session Per Week</label>
+                                        <div class="col-lg-9">
+                                            <input id="session_per_week" name="session_per_week" type="text" class="form-control">
+                                            <p>{{error_message.session_per_week_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="session_start_time" class="col-lg-3 col-form-label">Session Start Time</label>
+                                        <div class="col-lg-9">
+                                            <input id="session_start_time" name="session_start_time" type="time" class="form-control">
+                                            <p>{{error_message.session_start_time_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="session_start_time" class="col-lg-3 col-form-label">Session End Time</label>
+                                        <div class="col-lg-9">
+                                            <input id="session_end_time" name="session_end_time" type="time" class="form-control">
+                                            <p>{{error_message.session_end_time_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="thumbnail" class="col-lg-3 col-form-label">Thumbnail</label>
+                                        <div class="col-lg-9">
+                                            <input id="thumbnail" name="thumbnail" type="file" class="form-control">
+                                            <p>{{error_message.thumbnail_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="amount" class="col-lg-3 col-form-label">Amount</label>
+                                        <div class="col-lg-9">
+                                            <input id="amount" name="amount" type="time" class="form-control">
+                                            <p>{{error_message.amount_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="discount" class="col-lg-3 col-form-label">Discount</label>
+                                        <div class="col-lg-9">
+                                            <input id="discount" name="discount" type="number" class="form-control">
+                                            <p>{{error_message.discount_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </fieldset>
+
+
+
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-right m-t-15">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- container-fluid -->
+
+
+{% endblock %}
+

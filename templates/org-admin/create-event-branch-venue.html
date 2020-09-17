@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
             <div class="col-sm-6">
-                <h4 class="page-title">Create Event</h4>
+                <h4 class="page-title">Create Event Branch/Venue</h4>
             </div>
 
             <div class="col-sm-6">
@@ -34,20 +34,46 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{% url 'create-event-type' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    <form method="post" action="{% url 'create-event-branch-venue' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
                         {% csrf_token %}
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="type" class="col-lg-3 col-form-label">Event Type</label>
+                                        <label for="branch" class="col-lg-3 col-form-label">Name</label>
                                         <div class="col-lg-9">
-                                            <input id="type" name="type" type="text" class="form-control">
-                                            <p>{{type_error_message}}</p>
+                                            <input id="branch" name="branch" type="text" class="form-control">
+                                            <p>{{error_message.branch_error}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="address" class="col-lg-3 col-form-label">Address</label>
+                                        <div class="col-lg-9">
+                                            <input id="address" name="address" type="text" class="form-control">
+                                            <p>{{error_message.address_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="contact_no" class="col-lg-3 col-form-label">Contact No.</label>
+                                        <div class="col-lg-9">
+                                            <input id="contact_no" name="contact_no" type="text" class="form-control">
+                                            <p>{{error_message.contact_no_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">

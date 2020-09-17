@@ -182,21 +182,48 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="{% url 'event-type' %}" class="waves-effect">
-                                    <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Events Type</span>
-                                </a>
-                            </li>
 
-                            <li>
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-view-grid"></i><span> Tables <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
-                                <ul class="submenu">
-                                    <li><a href="tables-basic.html">Basic Tables</a></li>
-                                    <li><a href="tables-datatable.html">Data Table</a></li>
-                                    <li><a href="tables-responsive.html">Responsive Table</a></li>
-                                    <li><a href="tables-editable.html">Editable Table</a></li>
-                                </ul>
-                            </li>
+                            {% if request.user.role == 'Admin' %}
+                                <li>
+                                    <a href="{% url 'event-type' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span> Events Type</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
+                                <li>
+                                    <a href="{% url 'event-branch-venue' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span> Events Branch/Venue</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
+                                <li>
+                                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-view-grid"></i><span> Event Category <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'event-category' %}">Category</a></li>
+                                        <li><a href="{% url 'event-sub-category' %}">Sub Category</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+
+                            {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
+                                <li>
+                                    <a href="{% url 'banner' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span> Events Banner</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
+                                <li>
+                                    <a href="{% url 'video' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span> Events Video</span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-face-smile"></i> <span> Icons  <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span> </a>
@@ -345,6 +372,7 @@
         <!-- Sweet-Alert  -->
         <script src="{% static 'plugins/sweet-alert2/sweetalert2.min.js' %}"></script>
         <script src="{% static 'assets/pages/sweet-alert.init.js' %}"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
         <!-- App js -->
@@ -364,6 +392,33 @@
             });
         });
     </script>
+
+
+<script type="text/javascript">
+
+   function get_sub_category() {
+    var category = document.getElementById("category");
+    var categoryValue = category.options[category.selectedIndex].value;
+    console.log(categoryValue);
+
+    $.ajax({
+        url: "http://127.0.0.1:8000/event/get-sub-cat/"+categoryValue,
+        type: 'get',
+        success: function(data) {
+            var data_list = data.split(",");
+            data_list.forEach(function (item) {
+            var text = item.name;
+            var value = item.id;
+            $("#sub_category").append(new Option(text, value));
+            });
+        },
+        failure: function(data) {
+            alert('Got an error dude');
+        }
+    });
+       }
+
+  </script>
     </body>
 
 </html>

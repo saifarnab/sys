@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
             <div class="col-sm-6">
-                <h4 class="page-title">Create Event</h4>
+                <h4 class="page-title">Update Event Category</h4>
             </div>
 
             <div class="col-sm-6">
@@ -34,16 +34,16 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{% url 'create-event-type' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    <form method="post" action="{% url 'update-event-category' context.id %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
                         {% csrf_token %}
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="type" class="col-lg-3 col-form-label">Event Type</label>
+                                        <label for="category" class="col-lg-3 col-form-label">Category Name</label>
                                         <div class="col-lg-9">
-                                            <input id="type" name="type" type="text" class="form-control">
-                                            <p>{{type_error_message}}</p>
+                                            <input id="category" name="category" type="text" value="{{ context.name }}" class="form-control">
+                                            <p>{{error_message.category_error}}</p>
                                         </div>
                                     </div>
                                 </div>

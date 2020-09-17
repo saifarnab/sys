@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
             <div class="col-sm-6">
-                <h4 class="page-title">Create Event</h4>
+                <h4 class="page-title">Create Event Sub Category</h4>
             </div>
 
             <div class="col-sm-6">
@@ -34,20 +34,38 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{% url 'create-event-type' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    <form method="post" action="{% url 'create-event-sub-category' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
                         {% csrf_token %}
                         <fieldset>
+
+                            {{ error_message }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="type" class="col-lg-3 col-form-label">Event Type</label>
+                                        <label for="sub_category" class="col-lg-3 col-form-label">Sub Category Name</label>
                                         <div class="col-lg-9">
-                                            <input id="type" name="type" type="text" class="form-control">
-                                            <p>{{type_error_message}}</p>
+                                            <input id="sub_category" name="sub_category" type="text" class="form-control">
+                                            <p>{{error_message.sub_category_error}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="category" class="col-lg-3 col-form-label">Select Category</label>
+                                        <div class="col-lg-9">
+                                            <select id="category" name="category" class="form-control">
+                                                {% for item in context %}
+                                                    <option value="{{item.id}}">{{item.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">

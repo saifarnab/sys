@@ -10,7 +10,6 @@
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
-
         <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'assets/css/metismenu.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
@@ -35,7 +34,6 @@
                 <div class="account-card-content"> 
 
                     <form method="post" action="{% url 'login' %}" class="form-horizontal m-t-30">
-                        {% csrf_token %}
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">

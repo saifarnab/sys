@@ -5,9 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    {% if request.user.role == 'Admin' %}
-                        <a href="{% url 'create-event-type' %}" class="btn btn-primary" style="margin-bottom:10px">Create Event Type</a>
-                    {% endif %}
+                    <a href="{% url 'create-event-category' %}" class="btn btn-primary" style="margin-bottom:10px">Create Event Category</a>
                     <table id="event_table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
@@ -28,8 +26,8 @@
                                 <td>{{ item.created_at }} </td>
                                 <td>{{ item.updated_at }} </td>
                                 <td>{{ item.status }} </td>
-                                <td> <a style="margin-right: 30px;" href="{% url 'update-event-type' item.id %}"><i class="fas fa-edit"></i></a>
-                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{% url 'delete-event-type' item.id %}"><i class="fas fa-trash"></i></i></a></td>
+                                <td> <a style="margin-right: 30px;" href="{% url 'update-event-category' item.id %}"><i class="fas fa-edit"></i></a>
+                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{% url 'delete-event-category' item.id %}"><i class="fas fa-trash"></i></i></a></td>
                             </tr>
                         {% endfor %}
 

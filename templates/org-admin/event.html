@@ -5,16 +5,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn btn-primary" style="margin-bottom:10px">Create Event</button>
+                    <a href="{% url 'create-event' %}" class="btn btn-primary" style="margin-bottom:10px">Create Event</a>
                     <table id="event_table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Event Titles</th>
+                            <th>Starting Date</th>
+                            <th>Trainer Name</th>
+                            <th>Enrolled</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Discount</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
 
@@ -23,6 +26,9 @@
                             <td>Tiger Nixon</td>
                             <td>System Architect</td>
                             <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
                             <td>61</td>
                             <td>2011/04/25</td>
                             <td>$320,800</td>
@@ -35,6 +41,9 @@
                             <td>27</td>
                             <td>2011/01/25</td>
                             <td>$112,000</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
                         </tr>
                         </tbody>
                     </table>

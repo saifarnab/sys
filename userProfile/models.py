@@ -30,6 +30,19 @@ class OrgProfile(models.Model):
     contact_number = models.CharField(max_length=288, null=False, blank=False)
     email = models.CharField(max_length=288, null=False, blank=False)
     address = models.CharField(max_length=288, null=False, blank=False)
+    facebook_link = models.CharField(max_length=588, null=True, blank=True)
+    twitter_link = models.CharField(max_length=588, null=True, blank=True)
+    linkedin_link = models.CharField(max_length=588, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class TrainerProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=288, unique=True, null=False, blank=False)
+    contact_number = models.CharField(max_length=288, null=False, blank=False)
+    email = models.CharField(max_length=288, null=False, blank=False)
+    address = models.CharField(max_length=288, null=False, blank=False)
     facebook_link = models.CharField(max_length=588, null=False, blank=False)
     twitter_link = models.CharField(max_length=588, null=False, blank=False)
     linkedin_link = models.CharField(max_length=588, null=False, blank=False)

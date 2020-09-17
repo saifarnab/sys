@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
             <div class="col-sm-6">
-                <h4 class="page-title">Create Event</h4>
+                <h4 class="page-title">Update Banner</h4>
             </div>
 
             <div class="col-sm-6">
@@ -34,20 +34,45 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{% url 'create-event-type' %}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    <form method="post" action="{% url 'update-banner' context.id %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
                         {% csrf_token %}
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="type" class="col-lg-3 col-form-label">Event Type</label>
+                                        <label for="name" class="col-lg-3 col-form-label">Name</label>
                                         <div class="col-lg-9">
-                                            <input id="type" name="type" type="text" class="form-control">
-                                            <p>{{type_error_message}}</p>
+                                            <input id="name" name="name" type="text" value="{{context.name}}" class="form-control">
+                                            <p>{{error_message.name_error}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Current banner</label>
+                                        <div class="col-lg-9">
+                                            <img src="{{BASE_URL}}/{{context.img}}" height="70px" width="100px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="file" class="col-lg-3 col-form-label">Upload new banner</label>
+                                        <div class="col-lg-9">
+                                            <input id="file" name="file" type="file" class="form-control">
+                                            <p>{{error_message.img_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">

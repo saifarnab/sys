@@ -6,9 +6,13 @@ from .models import User
 def sign_in(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST.get('email').strip(), password=request.POST.get('password'))
-        print(user)
+        print(request.POST.get('password'))
         if user is not None:
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            try:
+                print(request, user)
+                login(request, user)
+            except Exception as e:
+                print(e)
             return redirect('event')
 
     return render(request, 'org-admin/login.html', {})
