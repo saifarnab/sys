@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce',
+    'ckeditor',
     'event',
     'userProfile',
     'banner',
@@ -136,4 +136,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 BASE_URL = 'http://127.0.0.1:8000'
 
+CKEDITOR_UPLOAD_PATH = "uploads/event_details/"
 
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'

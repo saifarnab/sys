@@ -9,7 +9,7 @@
         <div class="row align-items-center">
 
             <div class="col-sm-6">
-                <h4 class="page-title">Create Event</h4>
+                <h4 class="page-title">Update Event</h4>
             </div>
 
             <div class="col-sm-6">
@@ -37,7 +37,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{% url 'create-event' %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
+                    <form method="post" action="{% url 'update-event' context.id %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
                         {% csrf_token %}
                         <fieldset>
                             <div class="row">
@@ -182,7 +182,7 @@
                                     <div class="form-group row">
                                         <label for="starting_date" class="col-lg-3 col-form-label">Starting Date</label>
                                         <div class="col-lg-9">
-                                            <input id="starting_date" name="starting_date" type="date" value="{{context.starting_date}}" class="form-control">
+                                            <input id="starting_date" name="starting_date" type="date" value='{{context.starting_date|date:"Y-m-d"}}' class="form-control">
                                             <p>{{error_message.starting_date_error}}</p>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="form-group row">
                                         <label for="last_registration_date" class="col-lg-3 col-form-label">Last Registration Date</label>
                                         <div class="col-lg-9">
-                                            <input id="last_registration_date" name="last_registration_date" value="{{context.last_registration_date}}" type="date" class="form-control">
+                                            <input id="last_registration_date" name="last_registration_date" value='{{context.last_registration_date|date:"Y-m-d"}}' type="date" class="form-control">
                                             <p>{{error_message.last_registration_date_error}}</p>
                                         </div>
                                     </div>
@@ -258,11 +258,31 @@
                         </fieldset>
 
 
-                        <fieldset>
+                                                <fieldset>
+
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
+                                        <label for="file" class="col-lg-3 col-form-label">Current Thumbnail</label>
+                                        <div class="col-lg-9">
+                                            <img src="{{BASE_URL}}/{{context.thumbnail}}" width="100px" height="100px"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+<!--                                        <img src="{{BASE_URL}}/{{context.thumbnail}}" width="100px" height="100px"/>-->
                                         <label for="file" class="col-lg-3 col-form-label">Thumbnail</label>
                                         <div class="col-lg-9">
                                             <input id="file" name="file" type="file" class="form-control">
@@ -313,7 +333,7 @@
                                     <div class="form-group row">
                                         <label for="event_details" class="col-lg-3 col-form-label">Event Details</label>
                                         <div class="col-lg-9">
-                                            <textarea id="event_details" name="event_details"></textarea>
+                                            <textarea id="event_details" name="event_details">{{context.content}} {{context.event_details}}</textarea>
                                             <p>{{error_message.event_details_error}}</p>
                                         </div>
                                     </div>
@@ -344,17 +364,17 @@
     </div>
     <!-- end row -->
 
-</div>
+</div>javascript:void(0);
 <!-- container-fluid -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    $('select[name="branch_venue"]').find('option[value="{{context.branch_venue}}"]').attr("selected",true);
-    $('select[name="type"]').find('option[value="{{context.type}}"]').attr("selected",true);
+    $('select[name="branch_venue"]').find('option[value="{{context.branch_venue.id}}"]').attr("selected",true);
+    $('select[name="type"]').find('option[value="{{context.type.id}}"]').attr("selected",true);
     $('select[name="status"]').find('option[value="{{context.status}}"]').attr("selected",true);
-    $('select[name="category"]').find('option[value="{{context.category}}"]').attr("selected",true);
+    $('select[name="category"]').find('option[value="{{context.category.id}}"]').attr("selected",true);
     $('select[name="sub_category"]').find('option[value="{{context.sub_category.id}}"]').attr("selected",true);
-    $('select[name="trainer"]').find('option[value="{{context.trainer}}"]').attr("selected",true);
+    $('select[name="trainer"]').find('option[value="{{context.trainer.id}}"]').attr("selected",true);
 
  </script>
 {% endblock %}
