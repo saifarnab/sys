@@ -2,9 +2,6 @@
 
 {% block content %}
 
-
-
-
     <div class="page-title-box">
         <div class="row align-items-center">
 
@@ -326,24 +323,80 @@
 
 
 
-                        <fieldset>
-                            <div class="row">
 
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label for="event_details" class="col-lg-3 col-form-label">Event Details</label>
-                                        <div class="col-lg-9">
+                                        <label for="event_details" class="col-lg-1 col-form-label">Details</label>
+                                        <div class="col-lg-11">
                                             <textarea id="event_details" name="event_details">{{context.content}} {{context.event_details}}</textarea>
                                             <p>{{error_message.event_details_error}}</p>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
 
-                        </fieldset>
 
+                        {% if request.user.role == 'Admin' %}
+                            <fieldset>
+
+                                <div class="row">
+                                   <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="col-lg-6 col-form-label">Featured</label>
+                                            <div class="col-lg-1">
+                                                {% if context.featured %}
+                                                    <input checked class="form-control" type="checkbox" name="featured">
+                                                {% else %}
+                                                    <input class="form-control" type="checkbox" name="featured">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="col-lg-6 col-form-label">Top Rated</label>
+                                            <div class="col-lg-1">
+                                                {% if context.top_rated %}
+                                                    <input checked class="form-control" type="checkbox" name="top_rated">
+                                                {% else %}
+                                                    <input class="form-control" type="checkbox" name="top_rated">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="col-lg-6 col-form-label">Most Popular</label>
+                                            <div class="col-lg-1">
+                                                {% if context.most_popular %}
+                                                    <input checked class="form-control" type="checkbox" name="most_popular">
+                                                {% else %}
+                                                    <input class="form-control" type="checkbox" name="most_popular">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="col-lg-6 col-form-label">Best Seller</label>
+                                            <div class="col-lg-1">
+                                                {% if context.best_sell %}
+                                                    <input checked class="form-control" type="checkbox" name="best_sell">
+                                                {% else %}
+                                                    <input class="form-control" type="checkbox" name="best_sell">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                        {% endif %}
 
 
 

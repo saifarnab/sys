@@ -1,0 +1,103 @@
+{% extends 'org-admin/base.html' %}
+
+{% block content %}
+
+    <div class="page-title-box">
+        <div class="row align-items-center">
+
+            <div class="col-sm-6">
+                <h4 class="page-title">Upload Slider</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="float-right d-none d-md-block">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-settings mr-2"></i> Settings
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'create-slider' %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-lg-3 col-form-label">Name</label>
+                                        <div class="col-lg-9">
+                                            <input id="name" name="name" type="text" class="form-control">
+                                            <p>{{error_message.name_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="file" class="col-lg-3 col-form-label">Img</label>
+                                        <div class="col-lg-9">
+                                            <input id="file" name="file" type="file" class="form-control">
+                                            <p>{{error_message.img_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="status" class="col-lg-3 col-form-label">Status</label>
+                                        <div class="col-lg-9">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-right m-t-15">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- container-fluid -->
+
+<script>
+</script>
+{% endblock %}
+

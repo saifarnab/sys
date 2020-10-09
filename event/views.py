@@ -577,6 +577,27 @@ def update_event(request, pk):
         if request.POST.get('event_details') == '':
             error_message['event_details_error'] = 'Provide event details'
 
+        if request.user.role == 'Admin':
+            if request.POST.get('featured') is None:
+                Event.objects.filter(id=pk).update(featured=False)
+            else:
+                Event.objects.filter(id=pk).update(featured=True)
+
+            if request.POST.get('top_rated') is None:
+                Event.objects.filter(id=pk).update(top_rated=False)
+            else:
+                Event.objects.filter(id=pk).update(top_rated=True)
+
+            if request.POST.get('most_popular') is None:
+                Event.objects.filter(id=pk).update(most_popular=False)
+            else:
+                Event.objects.filter(id=pk).update(most_popular=True)
+
+            if request.POST.get('best_sell') is None:
+                Event.objects.filter(id=pk).update(best_sell=False)
+            else:
+                Event.objects.filter(id=pk).update(best_sell=True)
+
         try:
             e = Event.objects.get(id=pk)
             e.thumbnail = request.FILES['file']

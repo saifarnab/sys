@@ -26,6 +26,8 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('banner/', include('banner.urls')),
     path('videos/', include('videos.urls')),
+    path('home/', include('home.urls')),
+    path('slider/', include('slider.urls')),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -27,7 +27,7 @@ SECRET_KEY = '=btx5x(j*f(mfk18e=vh2)#gjx4n9@6n&op*b3syfas8^7^oyj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'event',
     'userProfile',
     'banner',
-    'videos'
+    'videos',
+    'home',
+    'slider'
 ]
 
 MIDDLEWARE = [

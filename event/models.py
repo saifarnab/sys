@@ -72,6 +72,10 @@ class Event(models.Model):
     discount = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
     content = RichTextField()
     status = models.CharField(max_length=20, null=False, blank=False, default='Inactive', choices=EVENT_STATUS)
+    featured = models.BooleanField(default=False, null=True, blank=True)
+    top_rated = models.BooleanField(default=False, null=True, blank=True)
+    most_popular = models.BooleanField(default=False, null=True, blank=True)
+    best_sell = models.BooleanField(default=False, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

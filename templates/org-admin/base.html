@@ -45,19 +45,19 @@
             <div class="topbar">
 
                 <!-- LOGO -->
-                <div class="topbar-left">
-                    <a href="index.html" class="logo">
-                        <h4>Sys Diaries Ltd</h4>
-                        <span>
-                                <img src="{% static 'assets/images/logo-light.png' %}" alt="" height="18">
-                            <h4>Sys Diaries Ltd</h4>
-                        </span>
-                        <i>
-                            <h4>Sys Diaries Ltd</h4>
-                                <img src="{% static 'assets/images/logo-sm.png' %}" alt="" height="22">
-                        </i>
-                    </a>
-                </div>
+<!--                <div class="topbar-left">-->
+<!--                    <a href="index.html" class="logo">-->
+<!--                        <h4>Sys Diaries Ltd</h4>-->
+<!--                        <span>-->
+<!--                                <img src="{% static 'assets/images/logo-light.png' %}" alt="" height="18">-->
+<!--                            <h4>Sys Diaries Ltd</h4>-->
+<!--                        </span>-->
+<!--                        <i>-->
+<!--                            <h4>Sys Diaries Ltd</h4>-->
+<!--                                <img src="{% static 'assets/images/logo-sm.png' %}" alt="" height="22">-->
+<!--                        </i>-->
+<!--                    </a>-->
+<!--                </div>-->
 
                 <nav class="navbar-custom">
                     <ul class="navbar-right list-inline float-right mb-0">
@@ -185,6 +185,13 @@
                                 </a>
                             </li>
 
+                            {% if request.user.role == 'Admin' %}
+                                <li>
+                                    <a href="{% url 'slider' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span> Slider</span>
+                                    </a>
+                                </li>
+                            {% endif %}
 
                             {% if request.user.role == 'Admin' %}
                                 <li>
@@ -215,7 +222,7 @@
                             {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
                                 <li>
                                     <a href="{% url 'banner' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Events Banner</span>
+                                        <i class="ti-home"></i><span> Org Banner</span>
                                     </a>
                                 </li>
                             {% endif %}
