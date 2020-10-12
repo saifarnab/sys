@@ -358,38 +358,25 @@
 				<div class="row">
 					<div class="col-md-4 col-sm-4">	
 						<div class="slider-left">
-							<h2>Daffodil Institute of IT (DIIT)</h2>
+							<h2>{{context.org.name}}</h2>
 							<div class="product-tab-content">
 									<div class="product-item-code">
-										<p><span style="font-weight: bold">Status: </span>Organization</p>
-										<p><span style="font-weight: bold">Phone: </span>+88 225 966 74</p>
-										<p><span style="font-weight: bold">Email: </span>diit@diit.com</p>
-										<p><span style="font-weight: bold">Address: </span>Rayer Bazar West Dhanmondi, Dhaka</p>
+										<p><span style="font-weight: bold">Phone: </span>{{context.org.contact_number}}</p>
+										<p><span style="font-weight: bold">Email: </span>{{context.org.email}}</p>
+										<p><span style="font-weight: bold">Address: </span>{{context.org.address}}</p>
 									</div>
 									<div class="product-item-details">
-										<p><span style="font-weight: bold">Date of Joining:</span>  1st January 2020</p>
-										<p><span style="font-weight: bold">Total Number of Branches: </span>14</p>
-										<p><span style="font-weight: bold">Total Number of Completed Course: </span>45</p>
-										<p><span style="font-weight: bold">Total Number of Trainer: </span>11</p>
-										
+										<p><span style="font-weight: bold">Number of Branches: </span>{{context.branch | length}}</p>
+										<p><span style="font-weight: bold">Number of Courses: </span>{{context.event | length}}</p>
+										<p><span style="font-weight: bold">Number of Trainer: </span>11</p>
 									</div>
 
+
+
 									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										<li><div class="dropdown" style="display: inline-block;">
-										  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Edit
-										  <span class="caret"></span></button>
-										  <ul class="dropdown-menu">
-										    <li><a href="#">Info</a></li>
-										    <li><a href="#">Categories</a></li>
-										    <li><a href="#">Posters</a></li>
-										    <li><a href="#">Events</a></li>
-										    <li><a href="#">Branches</a></li>
-										  </ul>
-									  </div> 
-									</li>
+										<li><a href="{{context.org.facebook_link}}"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="{{context.org.twitter_link}}"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="{{context.org.linkedin_link}}"><i class="fa fa-google-plus"></i></a></li>
 									</ul>
 
 								</div>
@@ -399,50 +386,16 @@
 						<!-- Main Slider -->
 						<div class="main-slider">
 							<div class="slider">
-								<div id="mainSlider" class="nivoSlider slider-image">
-									<img src="img/slider/s1.jpg" alt="main slider" title="#htmlcaption1"/>
-									<img src="img/slider/s5.jpg" alt="main slider" title="#htmlcaption2"/>
+								<div id="mainSlider" class="nivoSlider slider-image" style="max-height: 410px;">
+									{% for item in context.slider %}
+										<img src="{{context.BASE_URL}}/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
+									{% endfor %}
 								</div>
-								<div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
-									<div class="slider-progress"></div>									
-									<div class="slide-text">
-										<div class="middle-text">
-											<div class="cap-title wow slideInRight" data-wow-duration=".9s" data-wow-delay="0s">
-												<h2>Skill Module</h2>
-											</div>
-											<div class="cap-dec wow slideInRight" data-wow-duration="1.1s" data-wow-delay="0s">
-												<p>Save Up to</p>
-												<h1>37% Off</h1>
-											</div>	
-											<!-- <div class="cap-readmore animated bounceIn" data-wow-duration="1.5s" data-wow-delay=".5s">
-												<a href="#">Shop Now</a>
-											</div>	 -->
-										</div>	
+								{% for item in context.slider %}
+									<div id="{{item.id}}" class="nivo-html-caption slider-caption-1">
+										<div class="slider-progress"></div>
 									</div>
-									<div class="slide-image">
-										<img class="wow slideInUp"  data-wow-duration="1.5s" data-wow-delay="0s" src="img/slider/si1.png" alt="slider caption" />
-									</div>
-								</div>
-								<div id="htmlcaption2" class="nivo-html-caption slider-caption-2">
-									<div class="slider-progress"></div>					
-									<div class="slide-text">
-										<div class="middle-text">
-											<div class="cap-title wow slideInRight" data-wow-duration=".9s" data-wow-delay="0s">
-												<h2>Skill Module</h2>
-											</div>
-											<div class="cap-dec wow slideInRight" data-wow-duration="1.1s" data-wow-delay="0s">
-												<p>Save Up to</p>
-												<h1>37% Off</h1>
-											</div>	
-											<!-- <div class="cap-readmore animated bounceIn" data-wow-duration="1.5s" data-wow-delay=".5s">
-												<a href="#">Shop Now</a>
-											</div>	 -->
-										</div>	
-									</div>
-									<!-- <div class="slide-image slide2-image">
-										<img class="wow slideInUp"  data-wow-duration="1.5s" data-wow-delay="0s" src="img/slider/si3.png" alt="slider caption" />
-									</div> -->
-								</div>
+								{% endfor %}
 							</div>
 						</div>
 					</div>
@@ -458,127 +411,37 @@
 							<div class="product-categeries">
 								<h2>Categeries</h2>
 								<div class="panel-group" id="accrodian">
+									{% for cat in context.category %}
 									<div class="panel panel-default">
 										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-heart"></i> Electrical
-												<a class="collapsed" data-toggle="collapse" href="#colOne" data-parent="#accrodian"></a>
-											</h4>
+											<h6 class="panel-title" style="font-size: 14px">
+												<i class="fa fa-heart"></i> {{ cat.name }}
+												<a class="collapsed" data-toggle="collapse" href="#cat{{cat.id}}" data-parent="#accrodian"></a>
+											</h6>
 										</div>
-										<div class="panel-collapse collapse" id="colOne">
+										<div class="panel-collapse collapse" id="cat{{cat.id}}">
 											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
+												{% for sub_cat in context.sub_category %}
+													{% if cat.name == sub_cat.category__name %}
+														<a href="#"><i class="fa fa-angle-double-right"></i> {{ sub_cat.name }} </a>
+													{% endif %}
+												{% endfor %}
 											</div>
 										</div>
 									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-male"></i> Civil
-												<a class="collapsed" data-toggle="collapse" href="#colTwo" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colTwo">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-female"></i> Software
-												<a class="collapsed" data-toggle="collapse" href="#colThree" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colThree">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-odnoklassniki"></i> Architecture
-												<a class="collapsed" data-toggle="collapse" href="#colFour" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colFour">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-gift"></i> IT & Computer
-												<a class="collapsed" data-toggle="collapse" href="#colFive" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colFive">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div>
-								<!-- 	<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-bitbucket"></i> Accessories
-												<a class="collapsed" data-toggle="collapse" href="#colSix" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colSix">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-												<i class="fa fa-coffee"></i> Offer
-												<a class="collapsed" data-toggle="collapse" href="#colSeven" data-parent="#accrodian"></a>
-											</h4>
-										</div>
-										<div class="panel-collapse collapse" id="colSeven">
-											<div class="panel-body">
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-1</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-2</a>
-												<a href="#"><i class="fa fa-angle-double-right"></i> Categori-3</a>
-											</div>
-										</div>
-									</div> -->
+									{% endfor %}
 								</div>
 							</div>
 							<div class="best-seller-area">
 								<h2 class="header-title">Our branches</h2>
-								<div class="product-item-code">
-									<p><span style="font-weight: bold">Area: </span>Dhamondi</p>
-									<p><span style="font-weight: bold">Phone: </span>+88 225 966 74</p>
-									<p><span style="font-weight: bold">Email: </span>diit@diit.com</p>
-									<p><span style="font-weight: bold">Address: </span>Rayer Bazar West Dhanmondi, Dhaka</p>
-								</div><hr>
-								<div class="product-item-code">
-									<p><span style="font-weight: bold">Area: </span>Kawran Bazar</p>
-									<p><span style="font-weight: bold">Phone: </span>+88 225 966 74</p>
-									<p><span style="font-weight: bold">Email: </span>diit@diit.com</p>
-									<p><span style="font-weight: bold">Address: </span>Rayer Bazar West Dhanmondi, Dhaka</p>
-								</div>
+								{% for item in context.branch %}
+									<div class="product-item-code">
+										<p><span style="font-weight: bold">Name: </span>{{item.name}}</p>
+										<p><span style="font-weight: bold">Phone: </span>{{item.contact_no}}</p>
+<!--										<p><span style="font-weight: bold">Email: </span>{{item.email}}</p>-->
+										<p><span style="font-weight: bold">Address: </span>{{item.address}}</p>
+									</div><hr>
+								{% endfor %}
 							</div>
 						 	<div class="add-kids single-add">
 								<a href="#"><img src="img/banner/kids-ad.jpg" alt="add"></a>
@@ -639,619 +502,44 @@
 					<div class="col-md-9 col-sm-8">
 						<div class="product-items-area">
 							
+							{% for cat in context.category %}
 							<div class="product-items">
-								<h2 class="product-header">Recently available</h2>
-								<div class="row">
-									<div id="product-slider" class="owl-carousel">
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/kids-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<p style="color:#f4e901"> Area: Dhanmondi </p><hr>
-														<p style="color:#f4e901"> Starting Date: 2nd Feb 2020</p>
-														<p style="color:#f4e901"> Ending Date: 6th June 2020</p><br>
-														<br>
-														<p style="color:#f4e901"> Day Count: 2 (Fri, Sat)</p>
-														<p style="color:#f4e901"> Time: 6.00 P.M.</p>
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color:#f4e901">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/women-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By <a href="#" style="color:#f4e901">DIIT</a>. Trainer: <a href="#" style="color:#f4e901">Saif</a></p>
-														<h5 style="color:#f4e901">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/men-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka.</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/kids-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/women-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/men-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="product-items">
-								<h2 class="product-header">most rated</h2>
-								<div class="row">
-									<div id="product-slider-two" class="owl-carousel">
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-3.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="arrivals-area single-add">
-								<a href="#"> <img src="img/banner/arrivals.jpg" alt="arrivals"> </a>
-							</div>
-							<div class="product-items">
-								<h2 class="product-header">electrical</h2>
+								<h2 class="product-header">{{cat.name}}</h2>
 								<div class="row">
 									<div id="product-slider-women" class="owl-carousel">
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
+										{% for event in context.event %}
+											{% if event.category__name == cat.name %}
+												<div class="col-md-4 pad-right-0">
+													<div class="single-product">
+														<div class="single-product-img">
+															<a href="#">
+																<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+															</a>
+															<div class="single-product-action">
+																<a href="#"><i class="fa fa-external-link"></i></a>
+																<a href="#"><i class="fa fa-shopping-cart"></i></a>
+															</div>
+														</div>
+														<div class="single-product-content">
+															<div class="product-content-left">
+																<h2><a href="#">{{event.title}}</a></h2>
+																<p>Org: {{event.org__name}},  Trainer: {{event.trainer__name}}</p>
+																<h5 style="color: #f4e901 ">{{event.amount}} taka</h5>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-2.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
+											{% endif %}
+										{% endfor %}
 									</div>
-								</div>
+								</div> <br>
+								{% endfor %}
 							</div>
-							<div class="product-items">
-								<h2 class="product-header">it & computer</h2>
-								<div class="row">
-									<div id="product-slider-kids" class="owl-carousel">
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4 pad-right-0">
-											<div class="single-product">
-												<div class="single-product-img">
-													<a href="#">
-														<img class="primary-img" src="img/product/d.png" alt="product">
-														<!-- <img class="secondary-img" src="img/product/single-product-1.jpg" alt="product"> -->
-													</a>
-													<div class="single-product-action">
-														<a href="#"><i class="fa fa-external-link"></i></a>
-														<a href="#"><i class="fa fa-shopping-cart"></i></a>
-													</div>
-												</div>
-												<div class="single-product-content">
-													<div class="product-content-left">
-														<h2><a href="#">Learn OOP with JAVA</a></h2>
-														<p>By DIIT</p>
-														<h5 style="color: #f4e901 ">7000.00 taka</h5>
-													</div>
-													<!-- <div class="product-content-right">
-														<p>7000.00</p>
-													</div> -->
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
+<!--							<div class="arrivals-area single-add">-->
+<!--								<a href="#"> <img src="img/banner/arrivals.jpg" alt="arrivals"> </a>-->
+<!--							</div>-->
+
 						</div>
 					</div>
 				</div>

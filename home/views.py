@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from event.models import EventCategory, EventSubCategory, Event
+from event.models import EventCategory, EventSubCategory, Event, EventBranchVenue
 from slider.models import Slider
+from userProfile.models import OrgProfile
 from django.conf import settings
 
 
@@ -18,8 +19,9 @@ def home(request):
 
 
 def org_home(request, pk):
-    print(pk)
     context = dict()
+    context['org'] = OrgProfile.objects.get(id=pk)
+    context['branch'] = EventBranchVenue.objects.filter(id=pk)
     context['BASE_URL'] = settings.BASE_URL
     context['category'] = EventCategory.objects.filter(status='Active').values('id', 'name')
     context['slider'] = Slider.objects.filter(status='Active').values('id', 'img')
@@ -28,6 +30,6 @@ def org_home(request, pk):
                                                                     'amount', 'discount', 'category__name', 'thumbnail',
                                                                     'featured', 'most_popular', 'top_rated',
                                                                     'best_sell')
-    print(context['BASE_URL'])
+    print(context['org'])
     return render(request, 'home/organization.html', {'context': context})
 

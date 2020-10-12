@@ -365,11 +365,10 @@ def delete_event_sub_category(request, pk):
 
 @login_required(login_url='login')
 def event(request):
+    context = dict()
     if request.user.role == 'Admin':
         context = Event.objects.all().values('id', 'title', 'starting_date', 'trainer__name', 'status', 'type__name',
                                              'amount', 'discount', 'org__name')
-        print(context)
-
     if request.user.role == 'Org':
         context = Event.objects.filter(org=OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))).values('id', 'title', 'starting_date', 'trainer__name', 'status', 'type__name',
                                              'amount', 'discount')
