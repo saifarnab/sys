@@ -1,0 +1,15 @@
+<div id="owl-slider-left" class="owl-carousel">
+    {% for event in context.event %}
+        {% if event.featured %}
+            <div class="slider-left-carousel">
+                <div class="slider-left-product">
+                    <a href="#"><img style="height:295px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="product"></a>
+                    <div class="slider-product-button">
+                        <p class="add-chart"><a href="#">Add To Cart</a></p>
+                    </div>
+                </div>
+                <p class="view-details"><a href="#">View details</a></p>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

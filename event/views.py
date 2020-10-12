@@ -416,8 +416,8 @@ def create_event(request):
         if request.POST.get('last_registration_date').strip() == '':
             error_message['last_registration_date_error'] = 'Select date'
 
-        if request.POST.get('duration').strip() == '':
-            error_message['duration_error'] = 'Provide duration in hours'
+        if request.POST.get('ending_date') == '':
+            error_message['ending_date_error'] = 'Select date'
 
         if request.POST.get('session_per_week').strip() == '':
             error_message['session_per_week_error'] = 'Provide Session per week'
@@ -431,6 +431,9 @@ def create_event(request):
         if request.POST.get('amount').strip() == '':
             error_message['amount_error'] = 'Provide event amount'
 
+        if request.POST.get('day').strip() == '':
+            error_message['day_error'] = 'Provide days'
+
         if request.POST.get('discount').strip() == '':
             error_message['discount_error'] = 'Provide event discount'
 
@@ -443,7 +446,6 @@ def create_event(request):
             error_message['img_error'] = 'Select an image'
 
         if error_message:
-            print('hit error')
             context = dict()
             context['title'] = request.POST.get('title').strip()
             context['branch_venue'] = request.POST.get('branch_venue')
@@ -457,13 +459,14 @@ def create_event(request):
 
             context['trainer'] = request.POST.get('trainer')
             context['starting_date'] = request.POST.get('starting_date')
+            context['ending_date'] = request.POST.get('ending_date')
             context['last_registration_date'] = request.POST.get('last_registration_date')
-            context['duration'] = request.POST.get('duration').strip()
             context['session_per_week'] = request.POST.get('session_per_week').strip()
             context['session_start_time'] = request.POST.get('session_start_time').strip()
             context['session_end_time'] = request.POST.get('session_end_time').strip()
             context['amount'] = request.POST.get('amount').strip()
             context['discount'] = request.POST.get('discount').strip()
+            context['day'] = request.POST.get('day').strip()
 
             return render(request, 'org-admin/create-event.html', {
                 'context': context,
@@ -475,7 +478,6 @@ def create_event(request):
             })
         else:
             try:
-                print('hit try')
                 org = OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))
                 trainer = TrainerProfile.objects.get(id=request.POST.get('trainer'))
                 branch_venue = EventBranchVenue.objects.get(id=request.POST.get('branch_venue'))
@@ -490,13 +492,14 @@ def create_event(request):
                     category=category,
                     sub_category=sub_category,
                     starting_date=request.POST.get('starting_date'),
+                    ending_date=request.POST.get('ending_date'),
                     last_registration_date=request.POST.get('last_registration_date'),
-                    duration=request.POST.get('duration').strip(),
                     session_per_week=request.POST.get('session_per_week').strip(),
                     session_start_time=request.POST.get('session_start_time'),
                     session_end_time=request.POST.get('session_end_time'),
                     thumbnail=request.FILES['file'],
                     type=type,
+                    day=request.POST.get('day').strip(),
                     branch_venue=branch_venue,
                     amount=request.POST.get('amount').strip(),
                     discount=request.POST.get('discount').strip(),
@@ -549,14 +552,14 @@ def update_event(request, pk):
         if request.POST.get('starting_date').strip() == '':
             error_message['starting_date_error'] = 'Select date'
 
-        if request.POST.get('last_registration_date').strip() == '':
-            error_message['last_registration_date_error'] = 'Select date'
+        if request.POST.get('ending_date') == '':
+            error_message['ending_date_error'] = 'Select date'
 
         if request.POST.get('last_registration_date').strip() == '':
             error_message['last_registration_date_error'] = 'Select date'
 
-        if request.POST.get('duration').strip() == '':
-            error_message['duration_error'] = 'Provide duration in hours'
+        if request.POST.get('last_registration_date').strip() == '':
+            error_message['last_registration_date_error'] = 'Select date'
 
         if request.POST.get('session_per_week').strip() == '':
             error_message['session_per_week_error'] = 'Provide Session per week'
@@ -569,6 +572,9 @@ def update_event(request, pk):
 
         if request.POST.get('amount').strip() == '':
             error_message['amount_error'] = 'Provide event amount'
+
+        if request.POST.get('day').strip() == '':
+            error_message['day_error'] = 'Provide days'
 
         if request.POST.get('discount').strip() == '':
             error_message['discount_error'] = 'Provide event discount'
@@ -615,13 +621,14 @@ def update_event(request, pk):
             context['sub_category'] = EventSubCategory.objects.get(id=request.POST.get('sub_category'))
             context['trainer'] = TrainerProfile.objects.get(id=request.POST.get('trainer'))
             context['starting_date'] = dateutil.parser.parse(request.POST.get('starting_date'))
+            context['ending_date'] = dateutil.parser.parse(request.POST.get('ending_date'))
             context['last_registration_date'] = dateutil.parser.parse(request.POST.get('last_registration_date'))
-            context['duration'] = request.POST.get('duration').strip()
             context['session_per_week'] = request.POST.get('session_per_week').strip()
             context['session_start_time'] = request.POST.get('session_start_time').strip()
             context['session_end_time'] = request.POST.get('session_end_time').strip()
             context['amount'] = request.POST.get('amount').strip()
             context['discount'] = request.POST.get('discount').strip()
+            context['day'] = request.POST.get('day').strip()
             context['event_details'] = request.POST.get('event_details')
 
             return render(request, 'org-admin/update-event.html', {
@@ -647,11 +654,12 @@ def update_event(request, pk):
                         category=category,
                         sub_category=sub_category,
                         starting_date=request.POST.get('starting_date'),
+                        ending_date=request.POST.get('ending_date'),
                         last_registration_date=request.POST.get('last_registration_date'),
-                        duration=request.POST.get('duration').strip(),
                         session_per_week=request.POST.get('session_per_week').strip(),
                         session_start_time=request.POST.get('session_start_time'),
                         session_end_time=request.POST.get('session_end_time'),
+                        day=request.POST.get('day'),
                         type=event_type,
                         branch_venue=branch_venue,
                         amount=request.POST.get('amount').strip(),
@@ -668,14 +676,15 @@ def update_event(request, pk):
                         category=category,
                         sub_category=sub_category,
                         starting_date=request.POST.get('starting_date'),
+                        ending_date=request.POST.get('ending_date'),
                         last_registration_date=request.POST.get('last_registration_date'),
-                        duration=request.POST.get('duration').strip(),
                         session_per_week=request.POST.get('session_per_week').strip(),
                         session_start_time=request.POST.get('session_start_time'),
                         session_end_time=request.POST.get('session_end_time'),
                         type=event_type,
                         branch_venue=branch_venue,
                         amount=request.POST.get('amount').strip(),
+                        day=request.POST.get('day').strip(),
                         discount=request.POST.get('discount').strip(),
                         content=request.POST.get('event_details'),
                         status=request.POST.get('status')

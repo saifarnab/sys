@@ -208,10 +208,10 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="duration" class="col-lg-3 col-form-label">Duration</label>
+                                        <label for="starting_date" class="col-lg-3 col-form-label">Ending Date</label>
                                         <div class="col-lg-9">
-                                            <input id="duration" name="duration" type="text" value="{{context.duration}}" class="form-control">
-                                            <p>{{error_message.duration_error}}</p>
+                                            <input id="ending_date" name="ending_date" type="date" value="{{context.ending_date}}" class="form-control">
+                                            <p>{{error_message.ending_date_error}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -273,10 +273,10 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="amount" class="col-lg-3 col-form-label">Amount</label>
+                                        <label for="day" class="col-lg-3 col-form-label">Day</label>
                                         <div class="col-lg-9">
-                                            <input id="amount" name="amount" type="number" value="{{context.amount}}" class="form-control">
-                                            <p>{{error_message.amount_error}}</p>
+                                            <input id="day" name="day" type="text" value="{{context.day}}" class="form-control">
+                                            <p>{{error_message.day_error}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -288,6 +288,16 @@
 
                         <fieldset>
                             <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="amount" class="col-lg-3 col-form-label">Amount</label>
+                                        <div class="col-lg-9">
+                                            <input id="amount" name="amount" type="number" value="{{context.amount}}" class="form-control">
+                                            <p>{{error_message.amount_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group row">

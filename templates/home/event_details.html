@@ -1,0 +1,155 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+
+	{% block content %}
+        <!-- Breadcurb AREA -->
+		<div class="breadcurb-area">
+			<div class="container">
+				<ul class="breadcrumb">
+
+				</ul>
+			</div>
+		</div>
+		<!-- Product Item AREA -->
+		<div class="product-item-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3">	
+						<div class="slider-left">
+							<h2>Featured Courses</h2>
+						    {% include "home/snippets/featured_events.html" %}
+
+						</div>
+						<div class="add-kids single-add">
+							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
+						</div>
+						<div class="add-kids single-add">
+							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
+						</div>
+						<div class="add-kids single-add">
+							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
+						</div>
+					</div>
+
+					<div class="col-md-9 col-sm-8">
+						<div class="row" style="margin-top:34px">
+							<div class="col-md-7 col-sm-7">
+								<div class="product-item-tab">
+									<div class="single-tab-content">
+										<div class="tab-content">
+											<div  role="tabpanel" class="tab-pane active" id="img-one"><img src="{{context.BASE_URL}}/{{context.event_details.thumbnail}}" alt="tab-img"></div>
+										</div>
+									</div>
+<!--									<div class="single-tab-img">-->
+<!--										<ul class="nav nav-tabs" role="tablist">-->
+<!--											<li role="presentation" class="active"><a href="#img-one" role="tab" data-toggle="tab"><img src="img/single-product/s1.jpg" alt="tab-img"></a></li>-->
+<!--											<li role="presentation"><a href="#img-two" role="tab" data-toggle="tab"><img src="img/single-product/s2.jpg" alt="tab-img"></a></li>-->
+<!--											<li role="presentation" class="tab-last-li"><a href="#img-three" role="tab" data-toggle="tab"><img src="img/single-product/s3.jpg" alt="tab-img"></a></li>-->
+<!--										</ul>-->
+<!--									</div>-->
+								</div>
+							</div>
+							<div class="col-md-5 col-sm-5">
+								<div class="product-tab-content">
+									<div class="product-tab-header">
+										<h1>{{context.event_details.title}}</h1>
+<!--										<div class="best-product-rating">-->
+<!--											<a href="#"><i class="fa fa-star"></i></a>-->
+<!--											<a href="#"><i class="fa fa-star"></i></a>-->
+<!--											<a href="#"><i class="fa fa-star"></i></a>-->
+<!--											<a href="#"><i class="fa fa-star"></i></a>-->
+<!--											<a href="#"><i class="fa fa-star"></i></a>-->
+<!--											<p>( 3 review)</p>-->
+<!--										</div>-->
+										<h3>{{context.event_details.amount}} taka</h3>
+									</div>
+									<div class="product-item-details">
+										<p><span style="font-weight: bold">Timeline:</span>  {{context.event_details.starting_date}} - {{context.event_details.ending_date}}</p>
+										<p><span style="font-weight: bold">Number of Sessions Per Week:</span> {{context.event_details.session_per_week}} </p>
+										<p><span style="font-weight: bold">Day:</span> {{context.event_details.day}}</p>
+										<p><span style="font-weight: bold">Time:</span> {{context.event_details.session_start_time}} - {{context.event_details.session_end_time}}</p>
+										<p><span style="font-weight: bold">Last Date of Registration:</span> {{context.event_details.last_registration_date}} </p>
+										<p><span style="font-weight: bold">Location:</span> {{context.event_details.branch_venue.name}} </p>
+										<p><span style="font-weight: bold">Trainer:</span> {{context.event_details.trainer.name}} </p>
+									</div>
+
+									<div class="available-option">
+										<div class="wishlist-icon">
+											<a class="btn btn-primary">Add WishList</a>
+											<a style="margin-left: 10px;" class="btn btn-primary">Enroll</a>
+											<div>	
+											</div>
+										</div>
+									</div> 
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="description-tab">
+									<ul class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Event Description</a></li>
+<!--										<li role="presentation"><a href="#information" role="tab" data-toggle="tab">Addisonal information</a></li>-->
+<!--										<li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews (3)</a></li>-->
+									</ul>
+									<div class="tab-content">
+										<div role="tabpanel" class="tab-pane active" id="description">
+											{{ context.event_details.content | safe }}
+										</div>
+<!--										<div role="tabpanel" class="tab-pane" id="information">-->
+<!--											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>-->
+
+<!--											<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. </p>-->
+<!--										</div>-->
+<!--										<div role="tabpanel" class="tab-pane" id="reviews">-->
+<!--											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>-->
+
+<!--											<p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>-->
+<!--										</div>-->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="single-product-slider similar-product">
+									<div class="product-items">
+										<h2 class="product-header">Similar PRODUCTS</h2>
+										<div class="row">
+											<div id="singleproduct-slider" class="owl-carousel">
+												{% for event in context.similar_event %}
+													<div class="col-md-4">
+														<div class="single-product">
+															<div class="single-product-img">
+																<a href="#">
+																	<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																</a>
+																<div class="single-product-action">
+																	<a href="#"><i class="fa fa-external-link"></i></a>
+																	<a href="#"><i class="fa fa-shopping-cart"></i></a>
+																</div>
+															</div>
+															<div class="single-product-content">
+																<div class="product-content-left">
+																   <h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>
+																	<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>
+																	<h5 style="color: #f4e901 ">{{event.amount}} taka</h5>
+																</div>
+															</div>
+														</div>
+													</div>
+												{% endfor %}
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+ {% endblock content %}
