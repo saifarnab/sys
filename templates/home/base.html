@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <!--[if lt IE 7 ]> <html lang="en" class="ie6">    <![endif]-->
@@ -101,9 +102,15 @@
 						<div class="col-md-8 col-sm-8 col-xs-12">
 							<div class="header-top-right">
 								<ul class="list-inline">
-									<li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
-									<li><a href="#"><i class="fa fa-lock"></i>Login</a></li>
-									<li><a href="#"><i class="fa fa-pencil-square-o"></i>Register</a></li>
+
+									{% if request.user.is_authenticated %}
+										<li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
+										<li><a href="{% url 'logout' %}"><i class="fa fa-pencil-square-o"></i>Logout</a></li>
+									{% else %}
+										<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i>Login</a></li>
+										<li><a href="{% url 'register' %}"><i class="fa fa-pencil-square-o"></i>Register</a></li>
+									{% endif %}
+
 								</ul>
 							</div>
 						</div>
@@ -139,43 +146,17 @@
 										<button type="button"><i class="fa fa-search"></i></button>
 									</form>
 								</div>
-								<div class="header-chart">
-									<ul class="list-inline">
-										<li class="chart-li">
-											<button type="button" style="background:#ffa726; color: white" class="btn ">
-											  Wishlist <span class="badge ">4</span>
-											</button>
-											<ul>
-                                                <li>
-                                                    <div class="header-chart-dropdown">
-                                                        <div class="header-chart-dropdown-list">
-                                                            <div class="dropdown-chart-left floatleft">
-                                                                <a href="#"><img src="img/product/best-product-1.png" alt="list"></a>
-                                                            </div>
-                                                            <div class="dropdown-chart-right">
-                                                                <h2><a href="#">Couser One</a></h2>
-                                                                <h4>5000.00 taka</h4>
-                                                            </div>
-                                                        </div>
-                                                        <div class="header-chart-dropdown-list">
-                                                            <div class="dropdown-chart-left floatleft">
-                                                                <a href="#"><img src="img/product/best-product-2.png" alt="list"></a>
-                                                            </div>
-                                                            <div class="dropdown-chart-right">
-                                                                <h2><a href="#">Couser Two</a></h2>
-                                                                <h4>5000.00 taka</h4>
-                                                            </div>
-                                                        </div>
-														<div class="chart-checkout">
-															<p>subtotal<span>10000.00 taka </span></p>
-															<button type="button" class="btn btn-default">Enroll</button>
-														</div>
-                                                    </div> 
-                                                </li> 
-                                            </ul> 
-										</li>
-									</ul>
-								</div>
+								{% if request.user.is_authenticated %}
+									<div class="header-chart">
+										<ul class="list-inline">
+											<li class="chart-li">
+													<button type="button" style="background:#ffa726; color: white" class="btn ">
+													  Wishlist <span class="badge" id="badge">{{context.current_cart_data_amount}}</span>
+													</button>
+											</li>
+										</ul>
+									</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -342,6 +323,7 @@
 
 	{% block content %}{% endblock content %}
 		<!-- Footer AREA -->
+	<br>
 		<div class="footer-area">
 			<div class="footer-top">
 				<div class="container">
@@ -453,6 +435,10 @@
  		<!-- jquery-1.11.3.min js
 		============================================ -->         
         <script src="{% static 'home_assets/js/vendor/jquery-1.11.3.min.js' %}"></script>
+
+		<!-- ajax js
+		============================================ -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         
  		<!-- bootstrap js
 		============================================ -->         
@@ -484,9 +470,29 @@
    		<!-- plugins js
 		============================================ -->         
         <script src="{% static 'home_assets/js/plugins.js' %}"></script>
+
 		
    		<!-- main js
 		============================================ -->           
         <script src="{% static 'home_assets/js/main.js' %}"></script>
+
+		<script type="text/javascript">
+			function add_to_cart(event_id) {
+			  console.log('hit the ajax function');
+			  $.ajax(
+				{
+					type:"POST",
+					url: "{% url 'save-to-cart' %}",
+					data:{
+							 event_id: event_id
+					},
+					success: function( data )
+					{
+						var s= document.getElementById('badge');
+						s.innerHTML = data;
+					}
+				 })
+			}
+		</script>
     </body>
 </html>

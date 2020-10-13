@@ -1,6 +1,6 @@
 {% extends "home/base.html" %}
 {% load static %}
-
+{% load mathfilters %}
 
 	{% block content %}
         <!-- Breadcurb AREA -->
@@ -135,7 +135,11 @@
 																<div class="product-content-left">
 																   <h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>
 																	<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>
-																	<h5 style="color: #f4e901 ">{{event.amount}} taka</h5>
+																	{% if event.discount > 0.00 %}
+																	<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>
+																	{% else %}
+																		<h5 style="color: #f4e901 ">{{event.amount}} taka </h5>
+																	{% endif %}
 																</div>
 															</div>
 														</div>

@@ -92,6 +92,7 @@
 									</div><hr>
 								{% endfor %}
 							</div>
+							<!--
 						 	<div class="add-kids single-add">
 								<a href="#"><img src="img/banner/kids-ad.jpg" alt="add"></a>
 							</div>
@@ -100,7 +101,7 @@
 								<a href="#"><img src="img/banner/kids-ad.jpg" alt="add"></a>
 							</div>
 
-						<!--	<div class="testmonial-area fix">
+							<div class="testmonial-area fix">
 								<h2 class="header-title">Testimonial</h2>
 								<div id="owl-testmonial" class="owl-carousel">
 									<div class="testmonial fix">
@@ -150,51 +151,73 @@
 					</div>
 					<div class="col-md-9 col-sm-8">
 						<div class="product-items-area">
-							
-							{% for cat in context.category %}
-							<div class="product-items">
-								<h2 class="product-header">{{cat.name}}</h2>
-								<div class="row">
-									<div id="product-slider-women" class="owl-carousel">
-										{% for event in context.event %}
-											{% if event.category__name == cat.name %}
-												<div class="col-md-4 pad-right-0">
-													<div class="single-product">
-														<div class="single-product-img">
-															<a href="#">
-																<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
-															</a>
-															<div class="single-product-action">
-																<a href="#"><i class="fa fa-external-link"></i></a>
-																<a href="#"><i class="fa fa-shopping-cart"></i></a>
-															</div>
-														</div>
-														<div class="single-product-content">
-															<div class="product-content-left">
-																<h2><a href="#">{{event.title}}</a></h2>
-																<p>Org: {{event.org__name}},  Trainer: {{event.trainer__name}}</p>
-																{% if event.discount > 0.00 %}
-																	<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>
-																{% else %}
-																	<h5 style="color: #f4e901 ">{{event.amount}} taka </h5>
-																{% endif %}
-															</div>
-														</div>
+							<br>
+							{% for event in context.sub_cat_event %}
+								{% if forloop.counter|mod:4 == 0 %}
+										<div class="row" >
+									{% else %}
+										<div>
+									{% endif %}
+										{% if forloop.counter|mod:5 == 0 %}
+											<div class="col-md-3" style="margin-top: 30px">
+										{% else %}
+											<div class="col-md-3">
+										{% endif %}
+
+											<div class="single-product">
+												<div class="single-product-img">
+													<a href="#">
+														<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+													</a>
+													<div class="single-product-action">
+														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-shopping-cart"></i></a>
 													</div>
 												</div>
-											{% endif %}
-										{% endfor %}
+												<div class="single-product-content">
+													<div class="product-content-left">
+														<h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>
+														<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>
+														{% if event.discount > 0.00 %}
+															<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>
+														{% else %}
+															<h5 style="color: #f4e901 ">{{event.amount}} taka </h5>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
-								</div> <br>
-								{% endfor %}
-							</div>
-
-<!--							<div class="arrivals-area single-add">-->
-<!--								<a href="#"> <img src="img/banner/arrivals.jpg" alt="arrivals"> </a>-->
-<!--							</div>-->
+							{% endfor %}
 
 						</div>
 					</div>
+					<div style="text-align:center">
+						{% if context.sub_cat_event.has_other_pages %}
+						  <ul class="pagination">
+							{% if context.sub_cat_event.has_previous %}
+							  <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+							{% else %}
+							  <li class="disabled"><span>&laquo;</span></li>
+							{% endif %}
+							{% for i in context.sub_cat_event.paginator.page_range %}
+							  {% if context.sub_cat_event.number == i %}
+								<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+							  {% else %}
+								<li><a href="?page={{ i }}">{{ i }}</a></li>
+							  {% endif %}
+							{% endfor %}
+							{% if users.has_next %}
+							  <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+							{% else %}
+							  <li class="disabled"><span>&raquo;</span></li>
+							{% endif %}
+						  </ul>
+						{% endif %}
+					</div>
+				</div>
+
+			</div>
 				</div>
 			</div>
 		</div>
