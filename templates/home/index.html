@@ -90,17 +90,17 @@
 						
 						</div>
 					</div>
-					<div style="float: right;">
-					 <div class="dropdown">
-						  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Location
-						  <span class="caret"></span></button>
-						  <ul class="dropdown-menu">
-						    <li><a href="#">Badda</a></li>
-						    <li><a href="#">Dhanmondi</a></li>
-						    <li><a href="#">Mohammadpur</a></li>
-						  </ul>
-					  </div> 
-					</div>
+<!--					<div style="float: right;">-->
+<!--					 <div class="dropdown">-->
+<!--						  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Location-->
+<!--						  <span class="caret"></span></button>-->
+<!--						  <ul class="dropdown-menu">-->
+<!--						    <li><a href="#">Badda</a></li>-->
+<!--						    <li><a href="#">Dhanmondi</a></li>-->
+<!--						    <li><a href="#">Mohammadpur</a></li>-->
+<!--						  </ul>-->
+<!--					  </div> -->
+<!--					</div>-->
 					<div class="col-md-9 col-sm-8">
 						<div class="product-items-area">
 
@@ -118,7 +118,7 @@
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
-																{% if request.user.is_authenticated %}
+																{% if request.user.is_authenticated and request.user.role == 'Member' %}
 																	<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>
 																{% endif %}}
 															</div>
@@ -126,7 +126,8 @@
 														<div class="single-product-content">
 															<div class="product-content-left">
 																<h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>
-																<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>
+																<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,
+																	Trainer:<a href="{% url 'trainer-profile' event.trainer__id %}"> {{event.trainer__name}}</a> </p>
 																{% if event.discount > 0.00 %}
 																	<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>
 																{% else %}
@@ -155,7 +156,7 @@
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
-																{% if request.user.is_authenticated %}
+																{% if request.user.is_authenticated and request.user.role == 'Member' %}
 																	<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>
 																{% endif %}}
 															</div>
@@ -194,7 +195,7 @@
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
-																{% if request.user.is_authenticated %}
+																{% if request.user.is_authenticated and request.user.role == 'Member' %}
 																	<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>
 																{% endif %}}
 															</div>

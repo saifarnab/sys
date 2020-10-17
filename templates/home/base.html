@@ -83,6 +83,8 @@
         <link rel="stylesheet" href="{% static 'home_assets/css/responsive.css' %}">
         
         <script src="{% static 'home_assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
+
+		<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     </head>
     <div class="home-one">
         <!--[if lt IE 8]>
@@ -104,7 +106,12 @@
 								<ul class="list-inline">
 
 									{% if request.user.is_authenticated %}
-										<li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
+										{% if request.user.role == 'Member' %}
+											<li><a href="{% url 'user-profile' %}"><i class="fa fa-user"></i>My Account</a></li>
+										{% endif %}
+										{% if request.user.role == 'Org' %}
+											<li><a href="{% url 'org' context.org_account.id %}"><i class="fa fa-user"></i>My Account</a></li>
+										{% endif %}
 										<li><a href="{% url 'logout' %}"><i class="fa fa-pencil-square-o"></i>Logout</a></li>
 									{% else %}
 										<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i>Login</a></li>
@@ -122,7 +129,7 @@
 					<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div class="header-logo">
-								<a href="index.html"><img src="{% static 'home_assets/img/logo.png' %}"  alt="logo"></a>
+								<a href="{% url 'home' %}"><img src="{% static 'home_assets/img/logo.png' %}"  alt="logo"></a>
 							</div>
 						</div>
 						<div class="col-md-10 col-sm-10 col-xs-12">
@@ -141,18 +148,18 @@
 									</ul>
 								</div>
 								<div class="header-search">
-									<form action="#">
-										<input type="text" placeholder="My Search"/>
-										<button type="button"><i class="fa fa-search"></i></button>
+									<form method="post" action="{% url 'home-search' %}">
+										<input name="search" type="text" placeholder="Search events"/>
+										<button type="submit"><i class="fa fa-search"></i></button>
 									</form>
 								</div>
-								{% if request.user.is_authenticated %}
+								{% if request.user.is_authenticated and request.user.role == 'Member' %}
 									<div class="header-chart">
 										<ul class="list-inline">
 											<li class="chart-li">
-													<button type="button" style="background:#ffa726; color: white" class="btn ">
+													<a href="{% url 'cart' %}" style="background:#ffa726; color: white" class="btn-sm">
 													  Wishlist <span class="badge" id="badge">{{context.current_cart_data_amount}}</span>
-													</button>
+													</a>
 											</li>
 										</ul>
 									</div>
@@ -334,12 +341,12 @@
 									<a href="index.html"><img src="{% static 'home_assets/img/logo.png' %}" alt="logo"></a>
 								</div>
 								<p>Lorem ipsum dolor sit amet, coetuer adipiscing elit. Aenean comodo liula eget dolor. Aenean massa. Cum sociis natoque penatibus.</p>
-								<ul class="list-inline">
-									<li><a href="#"><img src="img/visa-card/visa-card-1.png" alt="card" class="img-responsive"></a></li>
-									<li><a href="#"><img src="img/visa-card/visa-card-2.png" alt="card" class="img-responsive"></a></li>
-									<li><a href="#"><img src="img/visa-card/visa-card-3.png" alt="card" class="img-responsive"></a></li>
-									<li><a href="#"><img src="img/visa-card/visa-card-4.png" alt="card" class="img-responsive"></a></li>
-								</ul>
+<!--								<ul class="list-inline">-->
+<!--									<li><a href="#"><img src="img/visa-card/visa-card-1.png" alt="card" class="img-responsive"></a></li>-->
+<!--									<li><a href="#"><img src="img/visa-card/visa-card-2.png" alt="card" class="img-responsive"></a></li>-->
+<!--									<li><a href="#"><img src="img/visa-card/visa-card-3.png" alt="card" class="img-responsive"></a></li>-->
+<!--									<li><a href="#"><img src="img/visa-card/visa-card-4.png" alt="card" class="img-responsive"></a></li>-->
+<!--								</ul>-->
 							</div>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -493,6 +500,9 @@
 					}
 				 })
 			}
+		</script>
+	<script>
+            CKEDITOR.replace( 'education' );
 		</script>
     </body>
 </html>

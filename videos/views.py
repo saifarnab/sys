@@ -8,7 +8,7 @@ from django.conf import settings
 """ Event Video """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def video(request):
 
     if request.user.role == 'Admin':
@@ -20,7 +20,7 @@ def video(request):
     return render(request, 'org-admin/video.html', {'context': context, 'BASE_URL': settings.BASE_URL})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_video(request):
     if request.method == 'POST':
         error_message = dict()
@@ -56,7 +56,7 @@ def create_video(request):
     return render(request, 'org-admin/create-video.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_video(request, pk):
 
     context = Video.objects.get(id=pk)
@@ -92,7 +92,7 @@ def update_video(request, pk):
     return render(request, 'org-admin/update-video.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_video(request, pk):
     if request.user.role == 'Org':
         Video.objects.get(id=pk, user=OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))).delete()

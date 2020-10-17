@@ -24,13 +24,13 @@ def convert24(str1):
 """ Event Type """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def event_type(request):
     context = EventType.objects.all().values('id', 'name', 'created_at', 'updated_at', 'status')
     return render(request, 'org-admin/event-type.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_event_type(request):
     if request.method == 'POST':
         if request.POST.get('type') == '':
@@ -48,7 +48,7 @@ def create_event_type(request):
     return render(request, 'org-admin/create-event-type.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_event_type(request, pk):
 
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def update_event_type(request, pk):
     return render(request, 'org-admin/update-event-type.html', {'context': event})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_event_type(request, pk):
     if request.user.role == 'Admin':
         EventType.objects.get(id=pk).delete()
@@ -78,7 +78,7 @@ def delete_event_type(request, pk):
 """ Event Branch/Venue """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def event_branch_venue(request):
 
     if request.user.role == 'Admin':
@@ -90,7 +90,7 @@ def event_branch_venue(request):
     return render(request, 'org-admin/event-branch-venue.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_event_branch_venue(request):
     if request.method == 'POST':
         error_message = dict()
@@ -127,7 +127,7 @@ def create_event_branch_venue(request):
     return render(request, 'org-admin/create-event-branch-venue.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_event_branch_venue(request, pk):
     context = EventBranchVenue.objects.get(id=pk)
 
@@ -170,7 +170,7 @@ def update_event_branch_venue(request, pk):
     return render(request, 'org-admin/update-event-branch-venue.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_event_branch_venue(request, pk):
     if request.user.role == 'Org':
         EventBranchVenue.objects.get(id=pk).delete()
@@ -180,13 +180,13 @@ def delete_event_branch_venue(request, pk):
 """ Event Category """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def event_category(request):
     context = EventCategory.objects.all().values('id', 'name', 'created_at', 'updated_at', 'status')
     return render(request, 'org-admin/event-category.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_event_category(request):
     if request.user.role != 'Admin':
         return redirect('login')
@@ -216,7 +216,7 @@ def create_event_category(request):
     return render(request, 'org-admin/create-event-category.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_event_category(request, pk):
 
     if request.user.role != 'Admin':
@@ -248,7 +248,7 @@ def update_event_category(request, pk):
     return render(request, 'org-admin/update-event-category.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_event_category(request, pk):
     if request.user.role == 'Admin':
         EventCategory.objects.get(id=pk).delete()
@@ -268,7 +268,7 @@ def get_event_sub_category(request, pk):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def event_sub_category(request):
     if request.user.role != 'Admin':
         return redirect('login')
@@ -276,7 +276,7 @@ def event_sub_category(request):
     return render(request, 'org-admin/event-sub-category.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_event_sub_category(request):
     if request.user.role != 'Admin':
         return redirect('login')
@@ -313,7 +313,7 @@ def create_event_sub_category(request):
     return render(request, 'org-admin/create-event-sub-category.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_event_sub_category(request, pk):
     if request.user.role != 'Admin':
         return redirect('login')
@@ -351,7 +351,7 @@ def update_event_sub_category(request, pk):
     return render(request, 'org-admin/update-event-sub-category.html', {'sub_category_context': sub_category_context, 'category_context': category_context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_event_sub_category(request, pk):
     if request.user.role == 'Admin':
         EventSubCategory.objects.get(id=pk).delete()
@@ -363,7 +363,7 @@ def delete_event_sub_category(request, pk):
 """ Events """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def event(request):
     context = dict()
     if request.user.role == 'Admin':
@@ -376,7 +376,7 @@ def event(request):
     return render(request, 'org-admin/event.html', {'context': context})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_event(request):
     if request.user.role != 'Org':
         return redirect('login')
@@ -384,7 +384,7 @@ def create_event(request):
     category_context = list(EventCategory.objects.filter(status='Active').values('id', 'name'))
     type_context = list(EventType.objects.filter(status='Active').values('id', 'name'))
     branch_venue_context = list(EventBranchVenue.objects.filter(status='Active').values('id', 'name'))
-    trainer_context = list(TrainerProfile.objects.all().values('id', 'name'))
+    trainer_context = list(TrainerProfile.objects.filter(status='Active', user=request.user).values('id', 'name'))
 
     if request.method == 'POST':
         error_message = dict()
@@ -518,7 +518,7 @@ def create_event(request):
     })
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_event(request, pk):
 
     context = Event.objects.get(id=pk)
@@ -705,7 +705,7 @@ def update_event(request, pk):
     })
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_event(request, pk):
     if request.user.role == 'Admin':
         Event.objects.get(id=pk).delete()

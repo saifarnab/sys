@@ -21,15 +21,15 @@
 						    {% include "home/snippets/featured_events.html" %}
 
 						</div>
-						<div class="add-kids single-add">
-							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
-						</div>
-						<div class="add-kids single-add">
-							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
-						</div>
-						<div class="add-kids single-add">
-							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>
-						</div>
+<!--						<div class="add-kids single-add">-->
+<!--							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>-->
+<!--						</div>-->
+<!--						<div class="add-kids single-add">-->
+<!--							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>-->
+<!--						</div>-->
+<!--						<div class="add-kids single-add">-->
+<!--							<a href="#"><img src="{% static 'home_assets/img/banner/kids-ad.jpg' %}" alt="add"></a>-->
+<!--						</div>-->
 					</div>
 
 					<div class="col-md-9 col-sm-8">
@@ -62,26 +62,29 @@
 <!--											<a href="#"><i class="fa fa-star"></i></a>-->
 <!--											<p>( 3 review)</p>-->
 <!--										</div>-->
-										<h3>{{context.event_details.amount}} taka</h3>
+										<h3><s>{{context.event_details.amount}}</s> {{ context.event_details.amount|sub:context.event_details.discount }} taka</h3>
 									</div>
 									<div class="product-item-details">
 										<p><span style="font-weight: bold">Timeline:</span>  {{context.event_details.starting_date}} - {{context.event_details.ending_date}}</p>
-										<p><span style="font-weight: bold">Number of Sessions Per Week:</span> {{context.event_details.session_per_week}} </p>
+<!--										<p><span style="font-weight: bold">Number of Sessions Per Week:</span> {{context.event_details.session_per_week}} </p>-->
 										<p><span style="font-weight: bold">Day:</span> {{context.event_details.day}}</p>
 										<p><span style="font-weight: bold">Time:</span> {{context.event_details.session_start_time}} - {{context.event_details.session_end_time}}</p>
 										<p><span style="font-weight: bold">Last Date of Registration:</span> {{context.event_details.last_registration_date}} </p>
 										<p><span style="font-weight: bold">Location:</span> {{context.event_details.branch_venue.name}} </p>
 										<p><span style="font-weight: bold">Trainer:</span> {{context.event_details.trainer.name}} </p>
+										<p><span style="font-weight: bold">Organization:</span> <a href="{% url 'org' context.event_details.org.id %}">{{context.event_details.org.name}}</a> </p>
 									</div>
 
-									<div class="available-option">
-										<div class="wishlist-icon">
-											<a class="btn btn-primary">Add WishList</a>
-											<a style="margin-left: 10px;" class="btn btn-primary">Enroll</a>
-											<div>	
+									{% if request.user.is_authenticated and request.user.role == 'Member' %}
+										<div class="available-option">
+											<div class="wishlist-icon">
+												<a onclick="add_to_cart('{{context.event_details.id}}')" class="btn btn-primary">Add WishList</a>
+	<!--											<a style="margin-left: 10px;" class="btn btn-primary">Enroll</a>-->
+												<div>
+												</div>
 											</div>
 										</div>
-									</div> 
+									{% endif %}
 
 								</div>
 							</div>
@@ -127,8 +130,10 @@
 																	<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
 																</a>
 																<div class="single-product-action">
-																	<a href="#"><i class="fa fa-external-link"></i></a>
-																	<a href="#"><i class="fa fa-shopping-cart"></i></a>
+																	<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
+																	{% if request.user.is_authenticated and request.user.role == 'Member' %}
+																		<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>
+																	{% endif %}}
 																</div>
 															</div>
 															<div class="single-product-content">

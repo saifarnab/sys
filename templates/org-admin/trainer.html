@@ -6,16 +6,15 @@
             <div class="card">
                 <div class="card-body">
                     {% if request.user.role == 'Org' %}
-                        <a href="{% url 'create-video' %}" class="btn btn-primary" style="margin-bottom:10px">Upload Event Video</a>
+                        <a href="{% url 'create-org-trainer' %}" class="btn btn-primary" style="margin-bottom:10px">Create Trainer</a>
                     {% endif %}
                     <table id="event_table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
                             <td>SL</td>
                             <th>Name</th>
-                            <th>Video</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
+                            <th>Email</th>
+                            <th>Photo</th>
                             <th>Status</th>
                             {% if request.user.role == 'Admin' %}
                                 <th>Owner</th>
@@ -25,26 +24,20 @@
                         </thead>
 
                         <tbody>
-                        {% for item in context %}
+                        {% for item in context.trainer %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ item.name }} </td>
-                                <td>
-                                    <video width="320" height="150" controls>
-                                      <source src="{{BASE_URL}}/{{item.video}}" type="video/mp4">
-                                    </video>
-                                </td>
-                                <td>{{ item.created_at }} </td>
-                                <td>{{ item.updated_at }} </td>
+                                <td>{{ item.email }} </td>
+                                <td><img width="100px" height="70px" src="{{ BASE_URL }}/{{ item.img }}" /> </td>
                                 <td>{{ item.status }} </td>
                                 {% if request.user.role == 'Admin' %}
-                                    <th>{{ item.user__name }}</th>
+                                    <th>{{ item.user }}</th>
                                 {% endif %}
-                                <td> <a style="margin-right: 30px;" href="{% url 'update-video' item.id %}"><i class="fas fa-edit"></i></a>
-                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{% url 'delete-video' item.id %}"><i class="fas fa-trash"></i></i></a></td>
+                                <td> <a style="margin-right: 30px;" href="{% url 'update-org-trainer' item.id %}"><i class="fas fa-edit"></i></a>
+                                    <a onclick="return confirm('Are you sure you want to delete this item?');" href="{% url 'delete-org-trainer' item.id %}"><i class="fas fa-trash"></i></i></a></td>
                             </tr>
                         {% endfor %}
-
 
                         </tbody>
                     </table>

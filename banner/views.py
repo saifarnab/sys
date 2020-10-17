@@ -8,7 +8,7 @@ from django.conf import settings
 """ Event Banner """
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def banner(request):
 
     if request.user.role == 'Admin':
@@ -20,7 +20,7 @@ def banner(request):
     return render(request, 'org-admin/banner.html', {'context': context, 'BASE_URL': settings.BASE_URL})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_banner(request):
     if request.method == 'POST':
         error_message = dict()
@@ -53,7 +53,7 @@ def create_banner(request):
     return render(request, 'org-admin/create-banner.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_banner(request, pk):
     if request.user.role != 'Org':
         return redirect('login')
@@ -97,7 +97,7 @@ def update_banner(request, pk):
     return render(request, 'org-admin/update-banner.html', {'context': context, 'BASE_URL': settings.BASE_URL})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_banner(request, pk):
     if request.user.role == 'Org':
         Banner.objects.get(id=pk, user=OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))).delete()

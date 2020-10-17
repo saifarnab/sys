@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 
+@login_required(login_url='admin-login')
 def slider(request):
     if request.user.role != 'Admin':
         redirect('login')
@@ -12,7 +13,7 @@ def slider(request):
     return render(request, 'org-admin/slider.html', {'context': context, 'BASE_URL': settings.BASE_URL})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def create_slider(request):
     if request.user.role != 'Admin':
         redirect('login')
@@ -43,7 +44,7 @@ def create_slider(request):
     return render(request, 'org-admin/create-slider.html', {})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def update_slider(request, pk):
     if request.user.role != 'Admin':
         return redirect('login')
@@ -84,7 +85,7 @@ def update_slider(request, pk):
     return render(request, 'org-admin/update-slider.html', {'context': context, 'BASE_URL': settings.BASE_URL})
 
 
-@login_required(login_url='login')
+@login_required(login_url='admin-login')
 def delete_slider(request, pk):
     if request.user.role != 'Admin':
         return redirect('login')

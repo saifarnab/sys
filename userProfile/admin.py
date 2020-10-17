@@ -16,7 +16,7 @@ class OrgProfileAdmin(admin.ModelAdmin):
 
 
 class TrainerProfileAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'name', 'contact_number', 'email', 'address', 'facebook_link', 'twitter_link', 'linkedin_link', 'created_at', 'updated_at']
+    list_display = ['id', 'name', 'contact_number', 'email', 'address', 'facebook_link', 'twitter_link', 'linkedin_link', 'created_at', 'updated_at']
 
 
 class MemberProfileAdmin(admin.ModelAdmin):

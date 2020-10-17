@@ -104,19 +104,18 @@
 					<div class="col-md-9 col-sm-8">
 						<div class="product-items-area">
 							<br>
-							<h3 style="text-transform: uppercase;font-weight: bold;" class="product-header">{{context.sub_cat_name.name}}</h3>
+							<h3 style="text-transform: uppercase;font-weight: bold;" class="product-header">Search Result: {{context.search}}</h3>
 											<hr>
-							{% for event in context.sub_cat_event %}
+							{% for event in context.search_event %}
 								{% if forloop.counter|mod:4 == 0 %}
 										<div class="row" >
-
 									{% else %}
 										<div>
 									{% endif %}
 										{% if forloop.counter|mod:5 == 0 %}
-											<div class="col-md-3" style="margin-top: 30px">
+											<div class="col-md-3" style="margin-top: 20px">
 										{% else %}
-											<div class="col-md-3">
+											<div class="col-md-3" style="margin-top: 20px">
 										{% endif %}
 
 											<div class="single-product" style="margin-left: -15px">
@@ -150,15 +149,15 @@
 						</div>
 					</div>
 					<div style="text-align:center">
-						{% if context.sub_cat_event.has_other_pages %}
+						{% if context.search_event.has_other_pages %}
 						  <ul class="pagination">
-							{% if context.sub_cat_event.has_previous %}
+							{% if context.search_event.has_previous %}
 							  <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
 							{% else %}
 							  <li class="disabled"><span>&laquo;</span></li>
 							{% endif %}
-							{% for i in context.sub_cat_event.paginator.page_range %}
-							  {% if context.sub_cat_event.number == i %}
+							{% for i in context.search_event.paginator.page_range %}
+							  {% if context.search_event.number == i %}
 								<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
 							  {% else %}
 								<li><a href="?page={{ i }}">{{ i }}</a></li>

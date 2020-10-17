@@ -4,11 +4,15 @@
             <div class="slider-left-carousel">
                 <div class="slider-left-product">
                     <a href="#"><img style="height:295px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="product"></a>
-                    <div class="slider-product-button">
-                        <p class="add-chart"><a href="#">Add To Cart</a></p>
-                    </div>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.role == 'Member' %}
+                            <div class="slider-product-button">
+                                <p class="add-chart"><a onclick="add_to_cart('{{event.id}}')" href="#">Add To Cart</a></p>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
-                <p class="view-details"><a href="#">View details</a></p>
+                <p class="view-details"><a href="{% url 'event-details' event.id %}">View details</a></p>
             </div>
         {% endif %}
     {% endfor %}

@@ -209,6 +209,14 @@
                                 </li>
                             {% endif %}
 
+                            {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
+                                <li>
+                                    <a href="{% url 'org-trainer' %}" class="waves-effect">
+                                        <i class="ti-home"></i><span>Trainer</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+
                             {% if request.user.role == 'Admin'%}
                                 <li>
                                     <a href="javascript:void(0);" class="waves-effect"><i class="ti-view-grid"></i><span> Event Category <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
@@ -371,6 +379,12 @@
         <script>
             CKEDITOR.replace( 'event_details' );
 		</script>
+    <script>
+            CKEDITOR.replace( 'education' );
+    </script>
+    <script>
+            CKEDITOR.replace( 'experience' );
+    </script>
     </body>
 
 </html>
