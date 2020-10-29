@@ -38,7 +38,7 @@
 									<div class="single-tab-content">
 										<div class="tab-content">
 											<div class="col-md-8" style="padding-bottom: 10px; padding-top: 10px; margin-left: -15px;">
-												<img src="{{context.BASE_URL}}/{{context.profile.img}}" alt="tab-img">
+												<img src="/media/{{context.profile.img}}" alt="tab-img">
 											</div>
 											<!-- <div role="tabpanel" class="tab-pane active" id="img-one"><img src="img/single-product/s1.jpg" alt="tab-img"></div>
 											<div role="tabpanel" class="tab-pane active" id="img-one"><img src="img/single-product/s1.jpg" alt="tab-img"></div> -->
@@ -158,7 +158,7 @@
 														<div class="single-product">
 															<div class="single-product-img">
 																<a href="#">
-																	<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																	<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 																</a>
 																<div class="single-product-action">
 																	<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>

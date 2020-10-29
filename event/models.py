@@ -15,12 +15,6 @@ EVENT_STATUS = (
 )
 
 
-def get_file_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('uploads/events', filename)
-
-
 class EventType(models.Model):
     name = models.CharField(max_length=288, unique=True, null=False, blank=False)
     status = models.CharField(max_length=20, null=False, blank=False, default='Inactive', choices=STATUS)
@@ -67,7 +61,7 @@ class Event(models.Model):
     session_start_time = models.TimeField(null=False, blank=False)
     session_end_time = models.TimeField(null=False, blank=False)
     day = models.CharField(max_length=288, null=False, blank=False, default='Sunday & Monday')
-    thumbnail = models.ImageField(upload_to=get_file_path, null=False)
+    thumbnail = models.ImageField(upload_to='events/', null=False)
     type = models.ForeignKey(EventType, on_delete=models.CASCADE)
     branch_venue = models.ForeignKey(EventBranchVenue, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)

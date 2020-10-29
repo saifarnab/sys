@@ -19,7 +19,7 @@
 							<div class="slider">
 								<div id="mainSlider" class="nivoSlider slider-image" style="max-height: 410px;">
 									{% for item in context.slider %}
-										<img src="{{context.BASE_URL}}/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
+										<img src="/media/{item.img}}" alt="main slider" title="#{{item.id}}"/>
 									{% endfor %}
 								</div>
 								{% for item in context.slider %}

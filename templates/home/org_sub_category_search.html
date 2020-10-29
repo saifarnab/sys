@@ -37,7 +37,7 @@
 							<div class="slider">
 								<div id="mainSlider" class="nivoSlider slider-image" style="max-height: 300px;">
 									{% for item in context.slider %}
-										<img src="{{context.BASE_URL}}/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
+										<img src="/media/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
 									{% endfor %}
 								</div>
 								{% for item in context.slider %}
@@ -169,7 +169,7 @@
 											<div class="single-product" style="margin-left: -15px">
 												<div class="single-product-img">
 													<a href="#">
-														<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+														<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 													</a>
 													<div class="single-product-action">
 														<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>

@@ -19,7 +19,7 @@
 							<div class="slider">
 								<div id="mainSlider" class="nivoSlider slider-image" style="max-height: 410px;">
 									{% for item in context.slider %}
-										<img src="{{context.BASE_URL}}/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
+										<img src="/media/{{item.img}}" alt="main slider" title="#{{item.id}}"/>
 									{% endfor %}
 								</div>
 								{% for item in context.slider %}
@@ -69,7 +69,7 @@
 									{% if event.best_sell %}
 										<div class="best-sell-product">
 											<div class="best-product-img">
-												<a href="{% url 'event-details' event.id%}"><img style="height: 65px; width: 65px" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="product"></a>
+												<a href="{% url 'event-details' event.id%}"><img style="height: 65px; width: 65px" src="/media/{{event.thumbnail}}" alt="product"></a>
 											</div>
 											<div class="best-product-content">
 												<h2><a href="{% url 'event-details' event.id%}">{{event.title}} </a></h2>
@@ -114,7 +114,7 @@
 													<div class="single-product">
 														<div class="single-product-img">
 															<a href="#">
-																<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
@@ -152,7 +152,7 @@
 													<div class="single-product">
 														<div class="single-product-img">
 															<a href="#">
-																<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
@@ -191,7 +191,7 @@
 													<div class="single-product">
 														<div class="single-product-img">
 															<a href="#">
-																<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 															</a>
 															<div class="single-product-action">
 																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
