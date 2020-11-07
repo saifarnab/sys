@@ -13,7 +13,7 @@
                         <tr>
                             <td>SL</td>
                             <th>Name</th>
-                            <th>Video</th>
+                            <th>Video Link</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Status</th>
@@ -30,7 +30,7 @@
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ item.name }} </td>
                                 <td>
-                                    demo link
+                                    <a href="{{item.video_link}}" target="_blank"> Video Link</a>
                                 </td>
                                 <td>{{ item.created_at }} </td>
                                 <td>{{ item.updated_at }} </td>

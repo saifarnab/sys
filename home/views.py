@@ -185,6 +185,51 @@ def register(request):
     return render(request, 'reg_login/register.html', {'context': context})
 
 
+def register_as_org(request):
+    context = dict()
+    error = dict()
+    if request.method == 'POST':
+        name = request.POST.get('name').strip()
+        email = request.POST.get('email').strip()
+        password = request.POST.get('password').strip()
+        confirm_password = request.POST.get('confirm_password').strip()
+        agree_term = request.POST.get('agree_term')
+
+        if name == '':
+            error['name'] = 'Enter your organization name'
+        if email == '':
+            error['email'] = 'Enter your organization email'
+        if password == '':
+            error['password'] = 'Enter your password'
+        if confirm_password == '':
+            error['confirm_password'] = 'Confirm your password'
+        if password != confirm_password:
+            error['confirm_password'] = "Password does not match"
+        if agree_term is None:
+            error['agree_term'] = 'Please check terms and conditions'
+
+        context['error'] = error
+
+        if error:
+            context['name'] = name
+            context['email'] = email
+            context['password'] = password
+            context['confirm_password'] = confirm_password
+
+        else:
+            user = User.objects.create_user(username=email,
+                                            email=email,
+                                            password=password,
+                                            role="Org")
+
+            if user:
+                OrgProfile.objects.create(email=email, user=user, name=name)
+                user_login(request, user)
+                return redirect('admin-login')
+
+    return render(request, 'reg_login/register_as_org.html', {'context': context})
+
+
 @login_required(login_url='login')
 def save_to_cart(request):
     event = Event.objects.get(id=request.POST.get('event_id'))

@@ -1,0 +1,187 @@
+{% extends 'org-admin/base.html' %}
+
+{% block content %}
+
+    <div class="page-title-box">
+        <div class="row align-items-center">
+
+            <div class="col-sm-6">
+                <h4 class="page-title">Update Member</h4>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="float-right d-none d-md-block">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle arrow-none waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-settings mr-2"></i> Settings
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'update-admin-member' member.id %}" id="form-horizontal" enctype="multipart/form-data" class="form-horizontal form-wizard-wrapper">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-lg-3 col-form-label">Name</label>
+                                        <div class="col-lg-9">
+                                            <input id="name" name="name" type="text" class="form-control" value="{% firstof member.name '' %}">
+                                            <p>{{error_message.name_error}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-lg-3 col-form-label">Phone</label>
+                                        <div class="col-lg-9">
+                                            <input id="phone" name="phone" type="text" class="form-control" value="{% firstof member.contact_number '' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="address" class="col-lg-3 col-form-label">Address</label>
+                                        <div class="col-lg-9">
+                                            <input id="address" name="address" type="text" class="form-control" value="{% firstof member.address '' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="facebook" class="col-lg-3 col-form-label">Facebook</label>
+                                        <div class="col-lg-9">
+                                            <input id="facebook" name="facebook" type="text" class="form-control" value="{% firstof member.facebook '' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="twitter" class="col-lg-3 col-form-label">Twitter</label>
+                                        <div class="col-lg-9">
+                                            <input id="twitter" name="twitter" type="text" class="form-control" value="{% firstof member.twitter '' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="linkedin" class="col-lg-3 col-form-label">Linkedin</label>
+                                        <div class="col-lg-9">
+                                            <input id="linkedin" name="linkedin" type="text" class="form-control" value="{% firstof member.linkedin '' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="file" class="col-lg-3 col-form-label">Current Photo</label>
+                                        <div class="col-lg-9">
+                                            {% if item.img %}
+                                                <img width="100px" height="70px" src="/media/{{ member.img }}" />
+                                            {% else %}
+                                                <p>No Image</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="file" class="col-lg-3 col-form-label">Img</label>
+                                        <div class="col-lg-9">
+                                            <input id="file" name="file" type="file" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="education" class="col-lg-3 col-form-label">Education</label>
+                                        <div class="col-lg-9">
+                                            <textarea id="education" name="education">{% firstof member.education '' %}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="status" class="col-lg-3 col-form-label">Status</label>
+                                        <div class="col-lg-9">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-right m-t-15">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- container-fluid -->
+
+<script>
+</script>
+{% endblock %}
+

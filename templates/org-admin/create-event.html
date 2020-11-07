@@ -216,15 +216,15 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label for="session_per_week" class="col-lg-3 col-form-label">Session Per Week</label>
-                                        <div class="col-lg-9">
-                                            <input id="session_per_week" name="session_per_week" type="text" value="{{context.session_per_week}}" class="form-control">
-                                            <p>{{error_message.session_per_week_error}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="form-group row">-->
+<!--                                        <label for="session_per_week" class="col-lg-3 col-form-label"><del>Session Per Week</del></label>-->
+<!--                                        <div class="col-lg-9">-->
+<!--                                            <input disabled id="session_per_week" name="session_per_week" type="text" value="{{context.session_per_week}}" class="form-control">-->
+<!--                                            <p>{{error_message.session_per_week_error}}</p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                             </div>
 
@@ -235,7 +235,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="session_start_time" class="col-lg-3 col-form-label">Session Start Time</label>
+                                        <label for="session_start_time" class="col-lg-3 col-form-label">Start Time</label>
                                         <div class="col-lg-9">
                                             <input id="session_start_time" name="session_start_time" type="time" value="{{context.session_start_time}}" class="form-control">
                                             <p>{{error_message.session_start_time_error}}</p>
@@ -245,7 +245,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="session_end_time" class="col-lg-3 col-form-label">Session End Time</label>
+                                        <label for="session_end_time" class="col-lg-3 col-form-label">End Time</label>
                                         <div class="col-lg-9">
                                             <input id="session_end_time" name="session_end_time" type="time" value="{{context.session_end_time}}" class="form-control">
                                             <p>{{error_message.session_end_time_error}}</p>
@@ -319,10 +319,10 @@
                         <fieldset>
                             <div class="row">
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label for="event_details" class="col-lg-3 col-form-label">Event Details</label>
-                                        <div class="col-lg-9">
+                                        <label for="event_details" class="col-lg-2 col-form-label">Event Details</label>
+                                        <div class="col-lg-10">
                                             <textarea id="event_details" name="event_details"></textarea>
                                             <p>{{error_message.event_details_error}}</p>
                                         </div>

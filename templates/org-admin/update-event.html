@@ -213,16 +213,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label for="session_per_week" class="col-lg-3 col-form-label">Session Per Week</label>
-                                        <div class="col-lg-9">
-                                            <input id="session_per_week" name="session_per_week" type="text" value="{{context.session_per_week}}" class="form-control">
-                                            <p>{{error_message.session_per_week_error}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
 
                         </fieldset>
@@ -263,7 +253,7 @@
                                     <div class="form-group row">
                                         <label for="file" class="col-lg-3 col-form-label">Current Thumbnail</label>
                                         <div class="col-lg-9">
-                                            <img src="/media/{context.thumbnail}}" width="100px" height="100px"/>
+                                            <img src="/media/{{context.thumbnail}}" width="100px" height="100px"/>
                                         </div>
                                     </div>
                                 </div>

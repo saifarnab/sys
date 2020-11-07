@@ -2,12 +2,13 @@ from django.urls import path
 from .views import (
     home, org_home, event_details, register, login, logout, sub_category_search,
     org_sub_category_search, save_to_cart, user_cart, delete_event_from_cart, user_profile,
-    home_search, trainer_profile
+    home_search, trainer_profile, register_as_org
 )
 
 
 urlpatterns = [
     path('register/', register, name='register'),
+    path('register-org/', register_as_org, name='register-org'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('user-profile/', user_profile, name='user-profile'),

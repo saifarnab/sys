@@ -85,6 +85,26 @@
         <script src="{% static 'home_assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
 
 		<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+		<style>
+			.dropdown {
+			  position: relative;
+			  display: inline-block;
+			}
+
+			.dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f9f9f9;
+			  min-width: 150px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			  padding: 2px 4px;
+			  z-index: 1;
+			}
+
+			.dropdown:hover .dropdown-content {
+			  display: block;
+			}
+		</style>
     </head>
     <div class="home-one">
         <!--[if lt IE 8]>
@@ -114,10 +134,26 @@
 										{% endif %}
 										<li><a href="{% url 'logout' %}"><i class="fa fa-pencil-square-o"></i>Logout</a></li>
 									{% else %}
-										<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i>Login</a></li>
-										<li><a href="{% url 'register' %}"><i class="fa fa-pencil-square-o"></i>Register</a></li>
+									<li>
+										<div class="dropdown">
+										  <span> <i class="fa fa-lock"></i> Login</span>
+										  <div class="dropdown-content">
+										  	<a href="{% url 'admin-login' %}" style="color:black; font-weight:bold">As Organization</a>
+										  	<a href="{% url 'login' %}" style="color:black; font-weight:bold">As Member</a>
+										  </div>
+										</div>
+									</li>
+									<li></li>
+									<li>
+										<div class="dropdown">
+										  <span> <i class="fa fa-pencil-square-o"></i> Register</span>
+										  <div class="dropdown-content">
+										  	<a href="{% url 'register-org' %}" style="color:black; font-weight:bold">As Organization</a>
+										  	<a href="{% url 'register' %}" style="color:black; font-weight:bold">As Member</a>
+										  </div>
+										</div>
+									</li>
 									{% endif %}
-
 								</ul>
 							</div>
 						</div>

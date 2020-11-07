@@ -1,7 +1,5 @@
 from django.db import models
 from userProfile.models import OrgProfile
-import uuid
-import os
 
 STATUS = (
     ('Active', 'Active'),

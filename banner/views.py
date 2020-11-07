@@ -5,7 +5,7 @@ from userProfile.models import User, OrgProfile
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-""" Event Banner """
+""" Organization Banner """
 
 
 @login_required(login_url='admin-login')
@@ -55,14 +55,13 @@ def create_banner(request):
 
 @login_required(login_url='admin-login')
 def update_banner(request, pk):
-    if request.user.role != 'Org':
+    if request.user.role not in ['Org', 'Admin']:
         return redirect('login')
 
     context = Banner.objects.get(id=pk)
 
     if request.method == 'POST':
         error_message = dict()
-        org_profile = OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))
 
         if request.POST.get('name').strip() == '':
             error_message['name_error'] = 'Empty field not allowed'
@@ -71,23 +70,43 @@ def update_banner(request, pk):
             return render(request, 'org-admin/update-banner.html', {'context': context, 'error_message': error_message})
 
         try:
-            check = request.FILES['file']
-            Banner.objects.filter(id=pk).update(
-                        user=org_profile,
-                        name=request.POST.get('name').strip(),
-                        status=request.POST.get('status')
-                    )
+            if request.user.role == 'Admin':
+                check = request.FILES['file']
+                Banner.objects.filter(id=pk).update(
+                    name=request.POST.get('name').strip(),
+                    status=request.POST.get('status')
+                )
 
-            b = Banner.objects.get(id=pk)
-            b.img = request.FILES['file']
-            b.save()
+                b = Banner.objects.get(id=pk)
+                b.img = request.FILES['file']
+                b.save()
+
+            elif request.user.role == 'Org':
+                org_profile = OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))
+                check = request.FILES['file']
+                Banner.objects.filter(id=pk).update(
+                    user=org_profile,
+                    name=request.POST.get('name').strip(),
+                    status=request.POST.get('status')
+                )
+
+                b = Banner.objects.get(id=pk)
+                b.img = request.FILES['file']
+                b.save()
 
         except Exception as e:
-            Banner.objects.filter(id=pk).update(
-                user=org_profile,
-                name=request.POST.get('name').strip(),
-                status=request.POST.get('status')
-            )
+            if request.user.role == 'Org':
+                org_profile = OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))
+                Banner.objects.filter(id=pk).update(
+                    user=org_profile,
+                    name=request.POST.get('name').strip(),
+                    status=request.POST.get('status')
+                )
+            elif request.user.role == 'Admin':
+                Banner.objects.filter(id=pk).update(
+                    name=request.POST.get('name').strip(),
+                    status=request.POST.get('status')
+                )
 
         if error_message:
             return render(request, 'org-admin/update-banner.html', {'context': context, 'error_message': error_message})
@@ -101,4 +120,6 @@ def update_banner(request, pk):
 def delete_banner(request, pk):
     if request.user.role == 'Org':
         Banner.objects.get(id=pk, user=OrgProfile.objects.get(user=User.objects.get(username=str(request.user)))).delete()
-        return redirect('banner')
+    elif request.user.role == 'Admin':
+        Banner.objects.get(id=pk).delete()
+    return redirect('banner')

@@ -175,13 +175,13 @@
 
                             <li>
                                 <a class="waves-effect">
-                                    <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
+                                    <i class="ti-home"></i><span> Dashboard </span>
                                 </a>
                             </li>
 
                             <li>
                                 <a href="{% url 'event' %}" class="waves-effect">
-                                    <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Events </span>
+                                    <i class="ti-home"></i><span> Events </span>
                                 </a>
                             </li>
 
@@ -211,10 +211,20 @@
 
                             {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
                                 <li>
-                                    <a href="{% url 'org-trainer' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span>Trainer</span>
-                                    </a>
+                                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-view-grid"></i><span> Users <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                    <ul class="submenu">
+                                        <li><a href="{% url 'org-trainer' %}">Trainer</a></li>
+                                        {% if request.user.role == 'Admin' %}
+                                            <li><a href="{% url 'admin-member' %}">Members</a></li>
+                                            <li><a href="{% url 'admin-org' %}">Organizations</a></li>
+                                        {% endif %}
+                                    </ul>
                                 </li>
+<!--                                <li>-->
+<!--                                    <a href="{% url 'org-trainer' %}" class="waves-effect">-->
+<!--                                        <i class="ti-home"></i><span>Trainer</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
                             {% endif %}
 
                             {% if request.user.role == 'Admin'%}
@@ -362,10 +372,11 @@
         success: function(data) {
             var x = document.getElementById("sub_category");
             x.remove(x.selectedIndex);
+            $("#sub_category").empty();
             data.forEach(function (item) {
             var text = item.name;
             var value = item.id;
-            $("#sub_category").empty();
+            console.log(text, value);
             $("#sub_category").append(new Option(text, value));
             });
         },

@@ -265,6 +265,7 @@ def delete_event_category(request, pk):
 def get_event_sub_category(request, pk):
     print('hit ajax call method')
     context = list(EventSubCategory.objects.filter(category__id=pk).values('id', 'name'))
+    print(json.dumps(context))
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
@@ -419,9 +420,6 @@ def create_event(request):
         if request.POST.get('ending_date') == '':
             error_message['ending_date_error'] = 'Select date'
 
-        if request.POST.get('session_per_week').strip() == '':
-            error_message['session_per_week_error'] = 'Provide Session per week'
-
         if request.POST.get('session_start_time').strip() == '':
             error_message['session_start_time_error'] = 'Provide event start time'
 
@@ -461,7 +459,6 @@ def create_event(request):
             context['starting_date'] = request.POST.get('starting_date')
             context['ending_date'] = request.POST.get('ending_date')
             context['last_registration_date'] = request.POST.get('last_registration_date')
-            context['session_per_week'] = request.POST.get('session_per_week').strip()
             context['session_start_time'] = request.POST.get('session_start_time').strip()
             context['session_end_time'] = request.POST.get('session_end_time').strip()
             context['amount'] = request.POST.get('amount').strip()
@@ -494,7 +491,6 @@ def create_event(request):
                     starting_date=request.POST.get('starting_date'),
                     ending_date=request.POST.get('ending_date'),
                     last_registration_date=request.POST.get('last_registration_date'),
-                    session_per_week=request.POST.get('session_per_week').strip(),
                     session_start_time=request.POST.get('session_start_time'),
                     session_end_time=request.POST.get('session_end_time'),
                     thumbnail=request.FILES['file'],
@@ -561,9 +557,6 @@ def update_event(request, pk):
         if request.POST.get('last_registration_date').strip() == '':
             error_message['last_registration_date_error'] = 'Select date'
 
-        if request.POST.get('session_per_week').strip() == '':
-            error_message['session_per_week_error'] = 'Provide Session per week'
-
         if request.POST.get('session_start_time').strip() == '':
             error_message['session_start_time_error'] = 'Provide event start time'
 
@@ -623,7 +616,6 @@ def update_event(request, pk):
             context['starting_date'] = dateutil.parser.parse(request.POST.get('starting_date'))
             context['ending_date'] = dateutil.parser.parse(request.POST.get('ending_date'))
             context['last_registration_date'] = dateutil.parser.parse(request.POST.get('last_registration_date'))
-            context['session_per_week'] = request.POST.get('session_per_week').strip()
             context['session_start_time'] = request.POST.get('session_start_time').strip()
             context['session_end_time'] = request.POST.get('session_end_time').strip()
             context['amount'] = request.POST.get('amount').strip()
@@ -656,7 +648,6 @@ def update_event(request, pk):
                         starting_date=request.POST.get('starting_date'),
                         ending_date=request.POST.get('ending_date'),
                         last_registration_date=request.POST.get('last_registration_date'),
-                        session_per_week=request.POST.get('session_per_week').strip(),
                         session_start_time=request.POST.get('session_start_time'),
                         session_end_time=request.POST.get('session_end_time'),
                         day=request.POST.get('day'),
@@ -678,7 +669,6 @@ def update_event(request, pk):
                         starting_date=request.POST.get('starting_date'),
                         ending_date=request.POST.get('ending_date'),
                         last_registration_date=request.POST.get('last_registration_date'),
-                        session_per_week=request.POST.get('session_per_week').strip(),
                         session_start_time=request.POST.get('session_start_time'),
                         session_end_time=request.POST.get('session_end_time'),
                         type=event_type,

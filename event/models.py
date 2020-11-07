@@ -57,7 +57,6 @@ class Event(models.Model):
     starting_date = models.DateField(null=False, blank=False)
     ending_date = models.DateField(null=False, blank=False)
     last_registration_date = models.DateField(null=False, blank=False)
-    session_per_week = models.PositiveIntegerField(null=False, blank=False)
     session_start_time = models.TimeField(null=False, blank=False)
     session_end_time = models.TimeField(null=False, blank=False)
     day = models.CharField(max_length=288, null=False, blank=False, default='Sunday & Monday')
