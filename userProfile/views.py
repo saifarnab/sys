@@ -283,3 +283,8 @@ def delete_org(request, pk):
     except Exception as e:
         pass
     return redirect('admin-org')
+
+
+def profile(request):
+    user = OrgProfile.objects.get(user=request.user)
+    return render(request, 'org-admin/profile.html', {'user': user})

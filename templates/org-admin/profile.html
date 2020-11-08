@@ -1,0 +1,104 @@
+{% extends 'org-admin/base.html' %}
+
+{% block content %}
+    <div class="page-title-box">
+        <div class="row align-items-center">
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title mb-4">Organization Logo</h4>
+                    <div>
+                        <form>
+                          <div class="form-check">
+                              <img src="/media/{{user.img}}" class="img-fluid" alt="Logo">
+                            <input type="file" class="form-control" id="logo" name="logo"><br>
+                          </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title mb-4">Organization Infos</h4>
+                    <ol class="activity-feed">
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Name</span>
+                                <input type="text" class="form-control" id="name" name="name" value="{% firstof user.name '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Contact Number</span>
+                                <input type="text" class="form-control" id="contact_number" name="contact_number" value="{% firstof user.contact_number '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Address</span>
+                                <input type="text" class="form-control" id="address" name="address" value="{% firstof user.address '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Email</span>
+                                <input type="email" class="form-control" id="email" name="email" value="{% firstof user.email '' %}">
+                            </div>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+                <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title mb-4">Organization Infos</h4>
+                    <ol class="activity-feed">
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Status</span>
+                                <input disabled type="text" class="form-control" id="status" name="status" value="{% firstof user.status '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Facebook Link</span>
+                                <input type="text" class="form-control" id="facebook" name="facebook" value="{% firstof user.facebook_link '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Twitter Link</span>
+                                <input type="text" class="form-control" id="twitter" name="twitter" value="{% firstof user.twitter_link '' %}">
+                            </div>
+                        </li>
+                        <li class="feed-item">
+                            <div class="feed-item-list">
+                                <span class="date">Linkedin Link</span>
+                                <input type="text" class="form-control" id="linkedin" name="linkedin" value="{% firstof user.linkedin_link '' %}">
+                            </div>
+                        </li>
+
+                    </ol>
+                     <div class="text-center">
+                            <a href="#" class="btn btn-primary">Submit</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end row -->
+<!-- container-fluid -->
+{% endblock %}

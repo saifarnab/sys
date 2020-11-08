@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import sign_in, sign_out, delete_org, member, org, update_org, delete_member, org_trainer, create_trainer, update_trainer, delete_trainer, update_member
+from .views import sign_in, sign_out, delete_org, profile, member, org, update_org, delete_member, org_trainer, create_trainer, update_trainer, delete_trainer, update_member
 
 urlpatterns = [
     path('login/', sign_in, name='admin-login'),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('delete-admin-member/<int:pk>', delete_member, name='delete-admin-member'),
     path('update-admin-org/<int:pk>', update_org, name='update-admin-org'),
     path('delete-admin-org/<int:pk>', delete_org, name='delete-admin-org'),
+    path('admin-profile/', profile, name='admin-profile'),
 
 ]
