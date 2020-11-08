@@ -7,20 +7,17 @@
         </div>
     </div>
 
-
+ <form method="post" action="{% url 'admin-profile' %}" enctype="multipart/form-data">
     <div class="row">
         <div class="col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <h4 class="mt-0 header-title mb-4">Organization Logo</h4>
                     <div>
-                        <form>
                           <div class="form-check">
                               <img src="/media/{{user.img}}" class="img-fluid" alt="Logo">
-                            <input type="file" class="form-control" id="logo" name="logo"><br>
+                            <input type="file" class="form-control" id="file" name="file"><br>
                           </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
@@ -35,6 +32,7 @@
                             <div class="feed-item-list">
                                 <span class="date">Name</span>
                                 <input type="text" class="form-control" id="name" name="name" value="{% firstof user.name '' %}">
+                                <span style="color:red">{{ error.name_error }}</span>
                             </div>
                         </li>
                         <li class="feed-item">
@@ -53,6 +51,7 @@
                             <div class="feed-item-list">
                                 <span class="date">Email</span>
                                 <input type="email" class="form-control" id="email" name="email" value="{% firstof user.email '' %}">
+                                <span style="color:red">{{ error.email_error }}</span>
                             </div>
                         </li>
 
@@ -92,13 +91,13 @@
 
                     </ol>
                      <div class="text-center">
-                            <a href="#" class="btn btn-primary">Submit</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                 </div>
             </div>
         </div>
-
     </div>
+      </form>
     <!-- end row -->
 <!-- container-fluid -->
 {% endblock %}

@@ -287,4 +287,35 @@ def delete_org(request, pk):
 
 def profile(request):
     user = OrgProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        error_message = dict()
+        name = request.POST.get('name').strip()
+        email = request.POST.get('email').strip()
+        address = request.POST.get('address').strip()
+        contact_number = request.POST.get('contact_number').strip()
+        facebook_link = request.POST.get('facebook').strip()
+        twitter_link = request.POST.get('facebook').strip()
+        linkedin_link = request.POST.get('linkedin').strip()
+        if name == '':
+            error_message['name_error'] = 'Empty field not allowed'
+        if email == '':
+            error_message['email_error'] = 'Empty field not allowed'
+        if error_message:
+            print(error_message)
+            return render(request, 'org-admin/profile.html', {'user': user, 'error': error_message})
+        try:
+            OrgProfile.objects.filter(user=request.user).update(
+                name=name,
+                contact_number=contact_number,
+                address=address,
+                email=email,
+                linkedin_link=linkedin_link,
+                facebook_link=facebook_link,
+                twitter_link=twitter_link
+            )
+            user = OrgProfile.objects.get(user=request.user)
+            user.img = request.FILES['file']
+            user.save()
+        except Exception as e:
+            print('hit exception')
     return render(request, 'org-admin/profile.html', {'user': user})
