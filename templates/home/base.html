@@ -207,46 +207,29 @@
 			</div>
         </div>
         <!-- MAIN MENU AREA -->
-<!-- 		<div class="main-menu-area">
+<div class="main-menu-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="main-menu hidden-xs">
 							<nav>
 								<ul>
-									<li><a href="index.html">Home</a></li>
-									<li><a href="shop.html">Shop</a></li>
-									<li><a href="shop.html">Men</a></li>
-									<li><a href="shop.html">Women</a></li>
-									<li><a href="shop.html">Kids</a></li>
-									<li><a href="shop.html">gift</a></li>
-									<li><a href="blog-left-sidebar.html">Blog</a>
-										<ul class="sub-menu">
-											<li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-											<li><a href="blog-single.html">Blog Details</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Pages</a>
-										<ul class="sub-menu">
-											<li><a href="shop.html">Shop</a></li>
-											<li><a href="shop.html">Men</a></li>
-											<li><a href="shop.html">Women</a></li>
-											<li><a href="shop.html">Kids</a></li>
-											<li><a href="shop.html">Gift</a></li>
-											<li><a href="about-us.html">About Us</a></li>
-											<li><a href="event_details.html">Single Product</a></li>
-											<li><a href="cart.html">Cart</a></li>
-											<li><a href="checkout.html">Checkout</a></li>
-											<li><a href="look-book.html">Look Book</a></li>
-											<li><a href="404.html">Error 404</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">contact</a></li>
+									{% for cat in context.category %}
+										<li><a>{{ cat.name }}</a>
+											<ul class="sub-menu">
+												{% for sub_cat in context.sub_category %}
+													{% if cat.name == sub_cat.category__name %}
+															<li><a href="{% url 'sub-category-search' sub_cat.id %}">{{ sub_cat.name }}</a></li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+										</li>
+									{% endfor %}
 								</ul>
 							</nav>
-						</div> -->
+						</div>
 						<!-- Mobile MENU AREA -->
-<!-- 						<div class="mobile-menu hidden-sm hidden-md hidden-lg">
+					<div class="mobile-menu hidden-sm hidden-md hidden-lg">
 							<nav>
 								<ul>
 									<li><a href="index.html">Home</a></li>
@@ -258,7 +241,7 @@
 													<li><a href="#">Sidebar Left</a></li>
 													<li><a href="#">Sidebar Right</a></li>
 													<li><a href="#">List View</a></li>
-												</ul>	
+												</ul>
 											</li>
 											<li><a href="#">Shop Pages</a>
 												<ul>
@@ -266,7 +249,7 @@
 													<li><a href="#">My Account</a></li>
 													<li><a href="#">Wishlist</a></li>
 													<li><a href="#">Shopping Cart</a></li>
-												</ul>	
+												</ul>
 											</li>
 											<li><a href="#">Product Types</a>
 												<ul>
@@ -274,7 +257,7 @@
 													<li><a href="#">Variable Product</a></li>
 													<li><a href="#">Grouped Product</a></li>
 													<li><a href="#">Downloadable</a></li>
-												</ul>	
+												</ul>
 											</li>
 										</ul>
 									</li>
@@ -310,58 +293,9 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
         <!-- SUPPORT AREA -->
-<!-- 		<div class="support-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="single-support">
-							<div class="sigle-support-icon">
-								<p><i class="fa fa-plane"></i></p>
-							</div>
-							<div class="sigle-support-content">
-								<h2>FREE SHIPPING </h2>
-								<p>On Ordersover $200</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="single-support">
-							<div class="sigle-support-icon">
-								<p><i class="fa fa-dollar"></i></p>
-							</div>
-							<div class="sigle-support-content">
-								<h2>FREE SHIPPING </h2>
-								<p>Moneyback guarantee</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="single-support">
-							<div class="sigle-support-icon">
-								<p><i class="fa fa-clock-o"></i></p>
-							</div>
-							<div class="sigle-support-content">
-								<h2>24/7 SUPPORT</h2>
-								<p>Online consultations</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 hidden-sm col-xs-12">
-						<div class="single-support">
-							<div class="sigle-support-icon">
-								<p><i class="fa fa-umbrella"></i></p>
-							</div>
-							<div class="sigle-support-content">
-								<h2>SAFE SHOPPING</h2>
-								<p>Safe Shopping Guarantee</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
+
 	</div>
 
 	{% block content %}{% endblock content %}

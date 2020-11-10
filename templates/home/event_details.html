@@ -71,7 +71,7 @@
 										<p><span style="font-weight: bold">Time:</span> {{context.event_details.session_start_time}} - {{context.event_details.session_end_time}}</p>
 										<p><span style="font-weight: bold">Last Date of Registration:</span> {{context.event_details.last_registration_date}} </p>
 										<p><span style="font-weight: bold">Location:</span> {{context.event_details.branch_venue.name}} </p>
-										<p><span style="font-weight: bold">Trainer:</span> {{context.event_details.trainer.name}} </p>
+										<p><span style="font-weight: bold">Trainer:</span> <a href="{% url 'trainer-profile' context.event_details.trainer.id %}"> {{context.event_details.trainer.name}} </a> </p>
 										<p><span style="font-weight: bold">Organization:</span> <a href="{% url 'org' context.event_details.org.id %}">{{context.event_details.org.name}}</a> </p>
 									</div>
 

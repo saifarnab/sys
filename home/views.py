@@ -55,7 +55,7 @@ def org_home(request, pk):
 def event_details(request, pk):
     context = dict()
     context['BASE_URL'] = settings.BASE_URL
-    context['event'] = Event.objects.filter(featured=True).values('id', 'org__name', 'trainer__name', 'title',
+    context['event'] = Event.objects.filter(featured=True).values('id', 'org__name', 'trainer__id', 'trainer__name', 'title',
                                                                                     'amount', 'discount',
                                                                                     'category__name',
                                                                                     'thumbnail', 'featured')
