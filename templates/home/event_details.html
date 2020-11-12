@@ -126,8 +126,8 @@
 													<div class="col-md-4">
 														<div class="single-product">
 															<div class="single-product-img">
-																<a href="#">
-																	<img style="height:125px;" src="{{context.BASE_URL}}/{{event.thumbnail}}" alt="course img">
+																<a href="{% url 'event-details' event.id %}">
+																	<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
 																</a>
 																<div class="single-product-action">
 																	<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>

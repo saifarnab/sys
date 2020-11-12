@@ -384,7 +384,7 @@ def create_event(request):
 
     category_context = list(EventCategory.objects.filter(status='Active').values('id', 'name'))
     type_context = list(EventType.objects.filter(status='Active').values('id', 'name'))
-    branch_venue_context = list(EventBranchVenue.objects.filter(status='Active').values('id', 'name'))
+    branch_venue_context = list(EventBranchVenue.objects.filter(user__user=request.user, status='Active').values('id', 'name'))
     trainer_context = list(TrainerProfile.objects.filter(status='Active', user=request.user).values('id', 'name'))
 
     if request.method == 'POST':
