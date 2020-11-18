@@ -328,6 +328,11 @@ def user_profile(request):
 
 
 @login_required(login_url='login')
+def confirm_event(request, pk):
+    pass
+
+
+@login_required(login_url='login')
 def trainer_profile(request, pk):
     context = dict()
     context['BASE_URL'] = settings.BASE_URL

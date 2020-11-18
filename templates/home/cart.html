@@ -19,11 +19,11 @@
 							<table class="col-md-12">
 								<thead>
 									<tr>
-<!--										<th class="">Event</th>-->
 										<th >Event Details</th>
 										<th >Org / Trainer</th>
 										<th >Fees</th>
 										<th >Delete</th>
+										<th >Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -48,6 +48,7 @@
 											<span>{{item.event.amount|sub:item.event.discount}} taka</span>
 											</td>
 											<td class=""><a href="{% url 'delete-cart' item.id %}"><i class="fa fa-trash"></i></a></td>
+											<td class=""><a class="btn btn-sm btn-primary" href="{% url 'delete-cart' item.id %}">Confirm</i></a></td>
 										</tr>
 								{% endfor %}
 									
@@ -95,26 +96,26 @@
 								<button type="button" class="btn">Get A Quote</button>
 							</div>
 						</div> -->
-						<div class="col-md-4 col-sm-6">
-							<div class="shopping-summary chart-all">
-								<div class="shopping-cost-area">
-									<h2>WISH LIST SUMMARY</h2>
-									<div class="shopping-cost">
-										<div class="shopping-cost-left">
-											<p>Sub Total </p>
-											<p>Discount </p>
-											<p>GRAND TOTAL </p>
-										</div>
-										<div class="shopping-cost-right">
-											<p>{% firstof context.total_amount.event__amount__sum '0.0' %} taka</p>
-											<p>{% firstof context.total_discount.event__discount__sum '0.0' %} taka</p>
-											<p>{% firstof context.total_amount.event__amount__sum|sub:context.total_discount.event__discount__sum '0.0' %} taka</p>
-										</div>
-									</div>
-									<button disabled type="button" class="btn">Proceed to Payment</button>
-								</div>
-							</div>
-						</div>
+<!--						<div class="col-md-4 col-sm-6">-->
+<!--							<div class="shopping-summary chart-all">-->
+<!--								<div class="shopping-cost-area">-->
+<!--									<h2>WISH LIST SUMMARY</h2>-->
+<!--									<div class="shopping-cost">-->
+<!--										<div class="shopping-cost-left">-->
+<!--											<p>Sub Total </p>-->
+<!--											<p>Discount </p>-->
+<!--											<p>GRAND TOTAL </p>-->
+<!--										</div>-->
+<!--										<div class="shopping-cost-right">-->
+<!--											<p>{% firstof context.total_amount.event__amount__sum '0.0' %} taka</p>-->
+<!--											<p>{% firstof context.total_discount.event__discount__sum '0.0' %} taka</p>-->
+<!--											<p>{% firstof context.total_amount.event__amount__sum|sub:context.total_discount.event__discount__sum '0.0' %} taka</p>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--									<button disabled type="button" class="btn">Proceed to Payment</button>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 					</div>
 				</div>
 			</div>
