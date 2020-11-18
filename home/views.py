@@ -5,6 +5,7 @@ from event.models import EventCategory, EventSubCategory, Event, EventBranchVenu
 from slider.models import Slider
 from userProfile.models import OrgProfile, MemberProfile, User, TrainerProfile
 from banner.models import Banner
+from videos.models import Video
 from invoice.models import Cart
 from django.conf import settings
 from django.contrib.auth import authenticate, login as user_login, logout as user_logout
@@ -38,6 +39,8 @@ def org_home(request, pk):
     context['BASE_URL'] = settings.BASE_URL
     context['category'] = EventCategory.objects.filter(status='Active').values('id', 'name')
     context['slider'] = Banner.objects.filter(status='Active', user=context['org']).values('id', 'img')
+    context['video'] = Video.objects.filter(status='Active').values()
+    print(context['video'])
     if not request.user.is_anonymous:
         context['current_cart_data_amount'] = len(list(Cart.objects.filter(user=request.user)))
         if request.user.role == 'Org':

@@ -180,45 +180,45 @@
 								</div>
 							</div>
 
-							{% for cat in context.category %}
-							<div class="product-items">
-								<h2 class="product-header">{{cat.name}}</h2>
-								<div class="row">
-									<div id="product-slider-women" class="owl-carousel">
-										{% for event in context.event %}
-											{% if event.category__name == cat.name %}
-												<div class="col-md-4 pad-right-0">
-													<div class="single-product">
-														<div class="single-product-img">
-															<a href="{% url 'event-details' event.id %}">
-																<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">
-															</a>
-															<div class="single-product-action">
-																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>
-																{% if request.user.is_authenticated and request.user.role == 'Member' %}
-																	<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>
-																{% endif %}}
-															</div>
-														</div>
-														<div class="single-product-content">
-															<div class="product-content-left">
-																<h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>
-																<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>
-																{% if event.discount > 0.00 %}
-																	<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>
-																{% else %}
-																	<h5 style="color: #f4e901 ">{{event.amount}} taka </h5>
-																{% endif %}
-															</div>
-														</div>
-													</div>
-												</div>
-											{% endif %}
-										{% endfor %}
-									</div>
-								</div> <br>
-								{% endfor %}
-							</div>
+<!--							{% for cat in context.category %}-->
+<!--							<div class="product-items">-->
+<!--								<h2 class="product-header">{{cat.name}}</h2>-->
+<!--								<div class="row">-->
+<!--									<div id="product-slider-women" class="owl-carousel">-->
+<!--										{% for event in context.event %}-->
+<!--											{% if event.category__name == cat.name %}-->
+<!--												<div class="col-md-4 pad-right-0">-->
+<!--													<div class="single-product">-->
+<!--														<div class="single-product-img">-->
+<!--															<a href="{% url 'event-details' event.id %}">-->
+<!--																<img style="height:125px;" src="/media/{{event.thumbnail}}" alt="course img">-->
+<!--															</a>-->
+<!--															<div class="single-product-action">-->
+<!--																<a href="{% url 'event-details' event.id %}"><i class="fa fa-external-link"></i></a>-->
+<!--																{% if request.user.is_authenticated and request.user.role == 'Member' %}-->
+<!--																	<a onclick="add_to_cart('{{event.id}}')"><i class="fa fa-shopping-cart"></i></a>-->
+<!--																{% endif %}}-->
+<!--															</div>-->
+<!--														</div>-->
+<!--														<div class="single-product-content">-->
+<!--															<div class="product-content-left">-->
+<!--																<h2><a href="{% url 'event-details' event.id %}">{{event.title}}</a></h2>-->
+<!--																<p> Org: <a href="{% url 'org' event.org__id %}">{{event.org__name}} </a>,  Trainer: {{event.trainer__name}} </p>-->
+<!--																{% if event.discount > 0.00 %}-->
+<!--																	<h5 style="color: #f4e901 "> <s>{{event.amount}}</s> {{ event.amount|sub:event.discount }} taka </h5>-->
+<!--																{% else %}-->
+<!--																	<h5 style="color: #f4e901 ">{{event.amount}} taka </h5>-->
+<!--																{% endif %}-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
+<!--												</div>-->
+<!--											{% endif %}-->
+<!--										{% endfor %}-->
+<!--									</div>-->
+<!--								</div> <br>-->
+<!--								{% endfor %}-->
+<!--							</div>-->
 						</div>
 					</div>
 				</div>

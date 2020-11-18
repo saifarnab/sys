@@ -19,7 +19,7 @@
 									<div class="product-item-details">
 										<p><span style="font-weight: bold">Number of Branches: </span>{{context.branch | length}}</p>
 										<p><span style="font-weight: bold">Number of Courses: </span>{{context.event | length}}</p>
-										<p><span style="font-weight: bold">Number of Trainer: </span>11</p>
+<!--										<p><span style="font-weight: bold">Number of Trainer: </span>11</p>-->
 									</div>
 
 									<ul class="list-inline">
@@ -150,7 +150,32 @@
 <!--					</div>-->
 					<div class="col-md-9 col-sm-8">
 						<div class="product-items-area">
-							
+
+
+							<div class="product-items">
+								<h2 class="product-header">Videos</h2>
+								<div class="row">
+									<div id="product-slider-women" class="owl-carousel">
+										{% for v in context.video %}
+											<div class="col-md-4 pad-right-0">
+												<div class="single-product">
+													<div>
+														<iframe width="205" height="120" src="https://www.youtube.com/embed/{{v.video_link}}?controls=1"></iframe>
+													</div>
+													<div class="single-product-content">
+														<div class="product-content-left">
+															<h2>{{v.name}}</h2>
+														</div>
+													</div>
+												</div>
+											</div>
+										{% endfor %}
+									</div>
+								</div> <br>
+							</div>
+
+
+
 							{% for cat in context.category %}
 							<div class="product-items">
 								<h2 class="product-header">{{cat.name}}</h2>
@@ -190,6 +215,7 @@
 								</div> <br>
 								{% endfor %}
 							</div>
+						</div>
 
 <!--							<div class="arrivals-area single-add">-->
 <!--								<a href="#"> <img src="img/banner/arrivals.jpg" alt="arrivals"> </a>-->
