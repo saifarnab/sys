@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'slider',
     'invoice',
+    'orgEventConfirm'
 ]
 
 MIDDLEWARE = [

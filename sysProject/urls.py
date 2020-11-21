@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('slider/', include('slider.urls')),
     path('invoice/', include('invoice.urls')),
+    path('org-event-confirm/', include('orgEventConfirm.urls')),
 
 ]
 

@@ -6,7 +6,7 @@ from slider.models import Slider
 from userProfile.models import OrgProfile, MemberProfile, User, TrainerProfile
 from banner.models import Banner
 from videos.models import Video
-from invoice.models import Cart
+from invoice.models import Cart, Confirm
 from django.conf import settings
 from django.contrib.auth import authenticate, login as user_login, logout as user_logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -324,12 +324,28 @@ def user_profile(request):
                                                                   'thumbnail', 'featured')
     context['current_cart_data_amount'] = len(list(Cart.objects.filter(user=request.user)))
     context['profile'] = MemberProfile.objects.get(user=request.user)
+    context['confirm'] = Confirm.objects.filter(user=request.user)
     return render(request, 'home/user.html', {'context': context})
 
 
 @login_required(login_url='login')
 def confirm_event(request, pk):
-    pass
+    cart = Cart.objects.get(id=pk)
+    event = Event.objects.get(id=cart.event.id)
+    Confirm.objects.create(event=event, user=request.user)
+    Cart.objects.filter(id=pk, user=request.user).delete()
+
+    # render the cart again
+    context = dict()
+    if request.user.is_anonymous:
+        return redirect('login')
+    if request.user.role == 'Org':
+        return redirect('login')
+    context['current_cart_data_amount'] = len(list(Cart.objects.filter(user=request.user)))
+    context['cart'] = Cart.objects.filter(user=request.user)
+    context['total_amount'] = Cart.objects.aggregate(Sum('event__amount'))
+    context['total_discount'] = Cart.objects.aggregate(Sum('event__discount'))
+    return render(request, 'home/cart.html', {'context': context})
 
 
 @login_required(login_url='login')

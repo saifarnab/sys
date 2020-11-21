@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     home, org_home, event_details, register, login, logout, sub_category_search,
     org_sub_category_search, save_to_cart, user_cart, delete_event_from_cart, user_profile,
-    home_search, trainer_profile, register_as_org
+    home_search, trainer_profile, register_as_org, confirm_event
 )
 
 
@@ -22,4 +22,5 @@ urlpatterns = [
     path('cart/', user_cart, name='cart'),
     path('delete-cart/<int:pk>', delete_event_from_cart, name='delete-cart'),
     path('home-search/', home_search, name='home-search'),
+    path('confirm-event/<int:pk>', confirm_event, name='confirm-event'),
 ]

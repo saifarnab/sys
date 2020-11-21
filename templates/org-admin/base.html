@@ -187,6 +187,12 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="{% url 'org-event-confirm' %}" class="waves-effect">
+                                    <i class="ti-home"></i><span>Events Approval </span>
+                                </a>
+                            </li>
+
                             {% if request.user.role == 'Admin' %}
                                 <li>
                                     <a href="{% url 'slider' %}" class="waves-effect">

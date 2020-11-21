@@ -162,7 +162,7 @@
 								<!-- Nav tabs -->
 									<ul class="nav nav-tabs" role="tablist">
 										<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Education</a></li>
-<!--										<li role="presentation"><a href="#information" role="tab" data-toggle="tab">Enrolled Courses</a></li>-->
+										<li role="presentation"><a href="#information" role="tab" data-toggle="tab">Enrolled Events</a></li>
 <!--										<li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews (3)</a></li>-->
 									</ul>
 									  <!-- Tab panes -->
@@ -170,38 +170,31 @@
 										<div role="tabpanel" class="tab-pane active" id="description">
 											{{context.profile.education | safe}}
 										</div>
-<!--										<div role="tabpanel" class="tab-pane" id="information">-->
-<!--											<table class="table">-->
-<!--											  <thead>-->
-<!--											    <tr>-->
-<!--											      <th scope="col">#</th>-->
-<!--											      <th scope="col">Course Name</th>-->
-<!--											      <th scope="col">Joning Date</th>-->
-<!--											      <th scope="col">Ending Date</th>-->
-<!--											    </tr>-->
-<!--											  </thead>-->
-<!--											  <tbody>-->
-<!--											    <tr>-->
-<!--											      <th scope="row">1</th>-->
-<!--											      <td><a href="#">Learn oop with java</a></td>-->
-<!--											      <td>1th Feb 2019</td>-->
-<!--											      <td>5th March 2019</td>-->
-<!--											    </tr>-->
-<!--											    <tr>-->
-<!--											      <th scope="row">2</th>-->
-<!--											      <td><a href="#">Learn oop with java</a></td>-->
-<!--											      <td>1th Feb 2019</td>-->
-<!--											      <td>5th March 2019</td>-->
-<!--											    </tr>-->
-<!--											    <tr>-->
-<!--											      <th scope="row">3</th>-->
-<!--											      <td><a href="#">Learn oop with java</a></td>-->
-<!--											      <td>1th Feb 2019</td>-->
-<!--											      <td>5th March 2019</td>-->
-<!--											    </tr>-->
-<!--											  </tbody>-->
-<!--											</table>-->
-<!--										</div>-->
+										<div role="tabpanel" class="tab-pane" id="information">
+											<table class="table">
+											  <thead>
+											    <tr>
+											      <th scope="col">SL</th>
+											      <th scope="col">Event Name</th>
+											      <th scope="col">ORG Name</th>
+											      <th scope="col">Confirmation Date</th>
+											      <th scope="col">Status</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											  {% for item in context.confirm %}
+											    <tr>
+											      <td>{{ forloop.counter }}</td>
+											      <td><a href="#">{{ item.event.title }}</a></td>
+											      <td><a href="#">{{ item.event.org.name }}</a></td>
+											      <td>{{ item.updated_at }}</td>
+											      <td>{{ item.status }}</td>
+											    </tr>
+											  {% endfor %}
+
+											  </tbody>
+											</table>
+										</div>
 <!--										<div role="tabpanel" class="tab-pane" id="reviews">-->
 <!--											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>-->
 
