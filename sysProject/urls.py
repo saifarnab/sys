@@ -31,6 +31,7 @@ urlpatterns = [
     path('slider/', include('slider.urls')),
     path('invoice/', include('invoice.urls')),
     path('org-event-confirm/', include('orgEventConfirm.urls')),
+    path('dashboard/', include('dashboard.urls')),
 
 ]
 

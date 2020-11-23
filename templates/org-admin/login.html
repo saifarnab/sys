@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Veltrix - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>SYSDIARY Admin Dashboard</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
@@ -27,13 +27,13 @@
             <div class="card overflow-hidden account-card mx-3">
                 
                 <div class="bg-primary p-4 text-white text-center position-relative">
-                    <h4 class="font-20 m-b-5">Welcome</h4>
+                    <h4 class="font-20 m-b-5">Welcome to SYSDIARY Admin Dashboard</h4>
                     <p class="text-white-50 mb-4">Sign in to continue.</p>
-                    <a href="index.html" class="logo logo-admin"><img src="{% static 'assets/images/logo-sm.png' %}" height="24" alt="logo"></a>
+<!--                    <a href="index.html" class="logo logo-admin"><img src="{% static 'assets/images/logo-sm.png' %}" height="24" alt="logo"></a>-->
                 </div>
                 <div class="account-card-content"> 
 
-                    <form method="post" action="{% url 'admin-login' %}" class="form-horizontal m-t-30">
+                    <form method="post" action="{% url 'admin-login' %}" class="form-horizontal">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
@@ -48,7 +48,7 @@
                             <div class="col-sm-6">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                    <label class="custom-control-label" for="customControlInline">Remember me</label>
+<!--                                    <label class="custom-control-label" for="customControlInline">Remember me</label>-->
                                 </div>
                             </div>
                             <div class="col-sm-6 text-right">
@@ -58,7 +58,7 @@
 
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-12 m-t-20">
-                                <a href="pages-recoverpw.html"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+<!--                                <a href="pages-recoverpw.html"><i class="mdi mdi-lock"></i> Forgot your password?</a>-->
                             </div>
                         </div>
                     </form>
@@ -67,8 +67,8 @@
             </div>
 
             <div class="m-t-40 text-center">
-                <p>Don't have an account ? <a href="pages-register.html" class="font-500 text-primary"> Signup now </a> </p>
-                <p>© 2019 Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                <p>Don't have an account ? <a href="{% url 'register-org' %}" class="font-500 text-primary"> Signup now </a> </p>
+                <p>© 2020 Crafted with <i class="mdi mdi-heart text-danger"></i> by SYSDIARY</p>
             </div>
 
         </div>

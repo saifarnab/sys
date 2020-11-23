@@ -48,7 +48,8 @@
 											<span>{{item.event.amount|sub:item.event.discount}} taka</span>
 											</td>
 											<td class=""><a href="{% url 'delete-cart' item.id %}"><i class="fa fa-trash"></i></a></td>
-											<td class=""><a class="btn btn-sm btn-primary" href="{% url 'confirm-event' item.id %}">Confirm</i></a></td>
+											<td class=""><a onclick="return confirm('Are you sure, you want to confirm this event?' +
+											 ' The organization representative will be notified about your interest and they will contact with you soon.');" class="btn btn-sm btn-primary" href="{% url 'confirm-event' item.id %}">Confirm</i></a></td>
 										</tr>
 								{% endfor %}
 									

@@ -6,14 +6,12 @@ from .models import User, TrainerProfile, MemberProfile, OrgProfile
 def sign_in(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST.get('email').strip(), password=request.POST.get('password'))
-        print(request.POST.get('password'))
         if user is not None:
             try:
-                print(request, user)
                 login(request, user)
+                return redirect('dashboard')
             except Exception as e:
                 print(e)
-            return redirect('event')
 
     return render(request, 'org-admin/login.html', {})
 

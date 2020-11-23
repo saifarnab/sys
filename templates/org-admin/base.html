@@ -43,46 +43,36 @@
 
             <!-- Top Bar Start -->
             <div class="topbar">
-
-                <!-- LOGO -->
-<!--                <div class="topbar-left">-->
-<!--                    <a href="index.html" class="logo">-->
-<!--                        <h4>Sys Diaries Ltd</h4>-->
-<!--                        <span>-->
-<!--                                <img src="{% static 'assets/images/logo-light.png' %}" alt="" height="18">-->
-<!--                            <h4>Sys Diaries Ltd</h4>-->
-<!--                        </span>-->
-<!--                        <i>-->
-<!--                            <h4>Sys Diaries Ltd</h4>-->
-<!--                                <img src="{% static 'assets/images/logo-sm.png' %}" alt="" height="22">-->
-<!--                        </i>-->
-<!--                    </a>-->
-<!--                </div>-->
+                <div class="topbar-left">
+                    <p>
+                        <h4 style="color: white">SYSDIARY LTD</h4>
+                    </p>
+                </div>
 
                 <nav class="navbar-custom">
                     <ul class="navbar-right list-inline float-right mb-0">
-                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                            <form role="search" class="app-search">
-                                <div class="form-group mb-0">
-                                    <input type="text" class="form-control" placeholder="Search..">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
-                        </li>
+<!--                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">-->
+<!--                            <form role="search" class="app-search">-->
+<!--                                <div class="form-group mb-0">-->
+<!--                                    <input type="text" class="form-control" placeholder="Search..">-->
+<!--                                    <button type="submit"><i class="fa fa-search"></i></button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </li>-->
 
                         <!-- language-->
-                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                            <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{% static 'assets/images/flags/us_flag.jpg' %}" class="mr-2" height="12" alt=""/> English <span class="mdi mdi-chevron-down"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right language-switch">
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/germany_flag.jpg" alt="" height="16" /><span> German </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/italy_flag.jpg" alt="" height="16" /><span> Italian </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/french_flag.jpg" alt="" height="16" /><span> French </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/spain_flag.jpg" alt="" height="16" /><span> Spanish </span></a>
-                                <a class="dropdown-item" href="#"><img src="assets/images/flags/russia_flag.jpg" alt="" height="16" /><span> Russian </span></a>
-                            </div>
-                        </li>
+<!--                        <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">-->
+<!--                            <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">-->
+<!--                                <img src="{% static 'assets/images/flags/us_flag.jpg' %}" class="mr-2" height="12" alt=""/> English <span class="mdi mdi-chevron-down"></span>-->
+<!--                            </a>-->
+<!--                            <div class="dropdown-menu dropdown-menu-right language-switch">-->
+<!--                                <a class="dropdown-item" href="#"><img src="assets/images/flags/germany_flag.jpg" alt="" height="16" /><span> German </span></a>-->
+<!--                                <a class="dropdown-item" href="#"><img src="assets/images/flags/italy_flag.jpg" alt="" height="16" /><span> Italian </span></a>-->
+<!--                                <a class="dropdown-item" href="#"><img src="assets/images/flags/french_flag.jpg" alt="" height="16" /><span> French </span></a>-->
+<!--                                <a class="dropdown-item" href="#"><img src="assets/images/flags/spain_flag.jpg" alt="" height="16" /><span> Spanish </span></a>-->
+<!--                                <a class="dropdown-item" href="#"><img src="assets/images/flags/russia_flag.jpg" alt="" height="16" /><span> Russian </span></a>-->
+<!--                            </div>-->
+<!--                        </li>-->
 
                         <!-- full screen -->
                         <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
@@ -173,30 +163,30 @@
                     <div id="sidebar-menu">
                         <!-- Left Menu Start -->
                         <ul class="metismenu" id="side-menu">
-                            <li class="menu-title">Main</li>
+<!--                            <li class="menu-title">Main</li>-->
 
                             <li>
-                                <a class="waves-effect">
+                                <a href="{% url 'dashboard' %}" class="waves-effect">
                                     <i class="ti-home"></i><span> Dashboard </span>
                                 </a>
                             </li>
 
                             <li>
                                 <a href="{% url 'event' %}" class="waves-effect">
-                                    <i class="ti-home"></i><span> Events </span>
+                                    <i class="ti-view-grid"></i><span> Events </span>
                                 </a>
                             </li>
 
                             <li>
                                 <a href="{% url 'org-event-confirm' %}" class="waves-effect">
-                                    <i class="ti-home"></i><span>Events Approval </span>
+                                    <i class="ti-view-grid"></i><span>Events Approval </span>
                                 </a>
                             </li>
 
                             {% if request.user.role == 'Admin' %}
                                 <li>
                                     <a href="{% url 'slider' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Slider</span>
+                                        <i class="ti-view-grid"></i><span> Slider</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -204,7 +194,7 @@
                             {% if request.user.role == 'Admin' %}
                                 <li>
                                     <a href="{% url 'event-type' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Events Type</span>
+                                        <i class="ti-view-grid"></i><span> Events Type</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -212,7 +202,7 @@
                             {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
                                 <li>
                                     <a href="{% url 'event-branch-venue' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Events Branch/Venue</span>
+                                        <i class="ti-view-grid"></i><span> Events Branch/Venue</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -248,7 +238,7 @@
                             {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
                                 <li>
                                     <a href="{% url 'banner' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Org Banner</span>
+                                        <i class="ti-view-grid"></i><span> Org Banner</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -256,7 +246,7 @@
                             {% if request.user.role == 'Admin' or request.user.role == 'Org'%}
                                 <li>
                                     <a href="{% url 'video' %}" class="waves-effect">
-                                        <i class="ti-home"></i><span> Events Video</span>
+                                        <i class="ti-view-grid"></i><span> Events Video</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -384,7 +374,6 @@
             data.forEach(function (item) {
             var text = item.name;
             var value = item.id;
-            console.log(text, value);
             $("#sub_category").append(new Option(text, value));
             });
         },
